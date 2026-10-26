@@ -1,0 +1,22 @@
+sequenceDiagram
+  participant C as GitGit Client
+  participant G as GitGit Rust Core
+  participant M as MinIOS3 Manifest API
+  participant D as MinIOS3 Data Nodes
+  participant O as GitGit Outbox
+  C->>M: BeginUpload/ChunkManifest
+  loop Each missing chunk
+    C->>D: PUT chunk (scoped session)
+    D-->>M: durable receipt + SHA
+  end
+  C->>M: SealManifest(full SHA, contiguous chunk refs)
+  M->>M: Verify data durable + policy epoch
+  M-->>C: Signed durable receipt, ManifestId
+  C->>G: PrepareCommit(expected RefRevision, tree, receipts)
+  G->>M: Verify receipts and permissions
+  M-->>G: Valid through fenced epoch
+  G-->>C: Prepared ticket
+  C->>G: PublishCommit(ticket, idempotency key)
+  G->>G: Atomically Commit + Ref CAS + Outbox append
+  G-->>C: CommitID + RefRevision + OutboxSeq
+  G-->>O: Deliver signed committed event (at least once)

@@ -1,0 +1,13 @@
+stateDiagram-v2
+    [*] --> Prepared
+    Prepared --> Receiving: stream bytes
+    Prepared --> Abandoned: TTL expires
+    Receiving --> Durable: required receipts fsynced
+    Receiving --> Abandoned: bad checksum or cancelled
+    Durable --> Committed: Raft atomic commit + audit outbox
+    Durable --> Abandoned: epoch failed or timeout
+    Committed --> Acked: HTTP 2xx delivered
+    Committed --> AckUnknown: connection dropped
+    AckUnknown --> Acked: operation id query reconciles
+    Abandoned --> [*]: safe orphan recovery
+    Acked --> [*]

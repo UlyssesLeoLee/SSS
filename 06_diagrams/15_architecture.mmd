@@ -1,0 +1,16 @@
+flowchart TB
+  UI[Web Console - Vue 3] --> GG[GitGit Native Rust API]
+  GGC[GitGit Native CLI] --> GG
+  GG --> GRAPH[Commit DAG and Ref CAS - GitGit Metadata]
+  GG --> MEDIA[MediaAdapter Capability Orchestrator]
+  GG <-->|Manifest Receipt and Content API| MG[MinIOS3 Rust Gateway]
+  MEDIA --> WORK[Isolated Media Workers]
+  S3[AWS SDK and S3 Client] --> MG
+  LFS[Optional Git LFS Client] --> ADPT[Legacy Adapter E1]
+  ADPT --> MG
+  MG --> META[OpenRaft + redb Metadata]
+  META --> NATIVE[Native Erasure Coded Chunk Nodes]
+  META --> FED[OpenDAL Federation / S3 backends]
+  MG --> KMS[AuthZ / KMS / Audit]
+  GRAPH --> GC[Reachability Snapshot / GC Fence]
+  GC --> META

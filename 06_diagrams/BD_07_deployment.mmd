@@ -1,0 +1,21 @@
+flowchart TB
+  USERS[Git/SDK/Console Clients] --> LB[2+ Edge LBs TLS]
+  LB --> G1[Gateway 1 Rust]
+  LB --> G2[Gateway 2 Rust]
+  LB --> G3[Gateway 3 Rust]
+  G1 --> M1[Meta voter AZ-A]
+  G2 --> M2[Meta voter AZ-B]
+  G3 --> M3[Meta voter AZ-C]
+  M1 <--> M2
+  M2 <--> M3
+  M3 <--> M1
+  M1 --> S1[Storage AZ-A x2]
+  M2 --> S2[Storage AZ-B x2]
+  M3 --> S3[Storage AZ-C x2]
+  G1 --> W[Worker pool >=2]
+  G2 --> W
+  W --> EXT[AWS S3 / MinIO / upstream S3]
+  G1 --> KMS[External KMS / IdP]
+  M1 --> AUDIT[Independent immutable Audit Sink]
+  M2 --> AUDIT
+  M3 --> AUDIT

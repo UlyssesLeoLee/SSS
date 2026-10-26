@@ -1,0 +1,23 @@
+sequenceDiagram
+ participant U as GitGit Client
+ participant S as MinIOS3 CAS
+ participant G as GitGit CommitCoordinator
+ participant R as GitGit RefStore
+ U->>S: Upload chunks + Seal Manifest
+ S-->>U: DurableReceipt(manifest, epoch, expiry, signature)
+ U->>G: Commit(expectedRef, manifests, receipts, idempotencyKey)
+ G->>S: Verify Receipts + Policy Epoch
+ alt Receipts are valid
+   S-->>G: Valid
+   G->>R: Atomic Commit + Ref CAS + Outbox
+   alt CAS succeeds
+     R-->>G: Committed(revision)
+     G-->>U: CommitId + RefRevision
+   else conflict
+     R-->>G: RefConflict
+     G-->>U: 409 + currentRef
+   end
+ else Invalid/Missing Chunk
+   S-->>G: Refuse
+   G-->>U: Error; old Ref unchanged
+ end

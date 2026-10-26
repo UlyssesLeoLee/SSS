@@ -1,0 +1,179 @@
+{
+  "product": "MinIOS3",
+  "doc_id": "BD-MINIOS3-003",
+  "schema_version": "1.0",
+  "status": "DesignOnly",
+  "note": "Planned interfaces are not certified compatible until actual tests run",
+  "features": [
+    {
+      "api_feature": "Bucket CRUD/Listing",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "Create/List/Head/Delete、权限与地域差异",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Put/Get/Head/Delete/Copy",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "含条件头、Tag、Metadata、Range",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "ListObjectsV2",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "连续分页与权限安全",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Multipart Upload",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "中断恢复、幂等、清理",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Versioning",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "由平台保障或要求后端能力匹配",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "SigV4/Presigned URL",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "签名、时钟漂移、令牌撤销",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "SSE-S3/SSE-KMS",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "外部KMS、加密语义明示",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Object Lock/Legal Hold",
+      "target_release": "E1",
+      "intended_mode": "Native+条件Federation",
+      "known_constraints": "条件Federation仅在后端具真实WORM保证时开放",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Lifecycle",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "不得违反保留与Git引用策略",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Bucket Policy / STS",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "无完全一致时拒绝映射",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Event Notifications",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "幂等至少一次交付",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Virtual Host Style",
+      "target_release": "E1",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "路由/DNS/TLS配置依赖",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "Inventory / Batch",
+      "target_release": "E2",
+      "intended_mode": "Native+Federation",
+      "known_constraints": "按作业模式与支持差异提供",
+      "state": "Unverified",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "SelectObjectContent",
+      "target_release": "不承诺",
+      "intended_mode": "—",
+      "known_constraints": "未纳入第一企业验收基线",
+      "state": "Unsupported",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "S3 Express / Directory Buckets",
+      "target_release": "不承诺",
+      "intended_mode": "—",
+      "known_constraints": "非通用S3最低兼容目标",
+      "state": "Unsupported",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "S3 Access Points",
+      "target_release": "不承诺",
+      "intended_mode": "—",
+      "known_constraints": "未来另立变更要求",
+      "state": "Unsupported",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    },
+    {
+      "api_feature": "AWS专有的服务联动",
+      "target_release": "不承诺",
+      "intended_mode": "—",
+      "known_constraints": "如存储洞察/专属异步服务不是S3核心对象协议",
+      "state": "Unsupported",
+      "evidence_uri": null,
+      "tested_sdks": [],
+      "tested_backends": []
+    }
+  ]
+}

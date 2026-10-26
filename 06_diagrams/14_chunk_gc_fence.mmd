@@ -1,0 +1,10 @@
+stateDiagram-v2
+  [*] --> Reachable
+  Reachable --> Candidate: Unreferenced per signed GitGit full graph
+  Candidate --> Candidate: Replica lag, inflight upload, lease, legal hold or stale watermark
+  Candidate --> Tombstone: Grace expired AND re-check epoch with Raft
+  Tombstone --> Protected: New reference or retention arrives
+  Protected --> Reachable: Cancel delete
+  Tombstone --> DeleteReady: Re-check reachability and placement
+  DeleteReady --> Deleted: Physical removal after commit
+  Deleted --> [*]

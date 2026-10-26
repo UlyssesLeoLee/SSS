@@ -1,0 +1,36 @@
+syntax = "proto3";
+package minios3.storage.v1;
+// 设计契约示意：尚未生成/编译，非投产服务定义。
+message RequestContext {
+  string request_id = 1;
+  string operation_id = 2;
+  string tenant_id = 3;
+  uint64 route_epoch = 4;
+  uint64 policy_epoch = 5;
+  uint64 deadline_unix_ms = 6;
+  string ticket_id = 7;
+}
+message ShardHeader {
+  string object_generation = 1;
+  uint64 stripe_index = 2;
+  uint32 shard_index = 3;
+  bytes expected_sha256 = 4;
+  string disk_id = 5;
+}
+message PutShardRequest {
+  oneof body { RequestContext context = 1; ShardHeader header = 2; bytes chunk = 3; }
+}
+message DurableReceipt {
+  string storage_node_id = 1;
+  uint64 node_generation = 2;
+  bytes content_digest = 3;
+  uint64 persisted_journal_seq = 4;
+  uint64 placement_epoch = 5;
+  bytes receipt_auth_tag = 6;
+}
+message GetShardRequest { RequestContext context = 1; string object_generation = 2; uint64 stripe_index = 3; uint32 shard_index = 4; }
+message ShardChunk { bytes data = 1; bytes crc32c = 2; }
+service ShardStore {
+  rpc PutShard (stream PutShardRequest) returns (DurableReceipt);
+  rpc GetShard (GetShardRequest) returns (stream ShardChunk);
+}

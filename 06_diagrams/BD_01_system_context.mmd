@@ -1,0 +1,56 @@
+flowchart LR
+  subgraph Client[外部客户端与Git]
+    SDK[AWS SDK / S3 CLI]
+    LFS[git-lfs 标准客户端]
+    GIT[自研 GitGit Core]
+    UI[Web UI / minios3ctl]
+  end
+  subgraph Edge[Rust Protocol & Identity Plane]
+    S3[S3 Gateway SigV4]
+    LFSAPI[LFS Gateway]
+    ADMIN[Admin API]
+    POLICY[Identity / IAM / KMS]
+  end
+  subgraph Meta[Rust Metadata Plane]
+    RAFT[Raft Meta Cluster]
+    BUCKET[Bucket/Version Catalog]
+    CAS[CAS/OID 授权]
+    ROUTE[Route Epoch & Placement]
+    AUDIT[Audit Outbox]
+  end
+  subgraph Data[Storage Plane]
+    NATIVE[Rust Native EC Storage]
+    FED[Rust Federation S3 Adapter]
+    S3AWS[AWS S3]
+    S3ALT[Other S3 Provider]
+  end
+  subgraph Async[Rust Task Plane]
+    MIG[Migration / Replication]
+    INDEX[Git Index / Search]
+    PREVIEW[Media Sandboxed Worker]
+    GC[Safe Git GC / Scrub]
+  end
+  SDK --> S3
+  LFS --> LFSAPI
+  GIT <-->|Pre-receive / Ref Events| LFSAPI
+  UI --> ADMIN
+  S3 --> POLICY
+  LFSAPI --> POLICY
+  ADMIN --> POLICY
+  POLICY --> RAFT
+  S3 --> BUCKET
+  LFSAPI --> CAS
+  BUCKET --> RAFT
+  CAS --> RAFT
+  ROUTE --> RAFT
+  RAFT --> AUDIT
+  BUCKET --> ROUTE
+  ROUTE --> NATIVE
+  ROUTE --> FED
+  FED --> S3AWS
+  FED --> S3ALT
+  RAFT --> MIG
+  RAFT --> INDEX
+  RAFT --> GC
+  RAFT --> PREVIEW
+  INDEX <--> GIT

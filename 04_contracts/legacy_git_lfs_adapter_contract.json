@@ -1,0 +1,64 @@
+{
+  "schema_version": "0.1-design",
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED",
+  "service_auth": "mTLS + signed service assertion",
+  "operations": [
+    {
+      "path": "/internal/git/v1/prepare-ref-update",
+      "fields": [
+        "git_txn_id",
+        "repo_id",
+        "ref",
+        "old_commit_oid",
+        "new_commit_oid",
+        "trusted_lfs_pointer_digest",
+        "actor",
+        "ref_sequence",
+        "policy_epoch"
+      ],
+      "response": [
+        "ticket",
+        "expires_at",
+        "pointer_count",
+        "grant_watermark"
+      ]
+    },
+    {
+      "path": "/internal/git/v1/events",
+      "fields": [
+        "event_id",
+        "git_txn_id",
+        "repo_id",
+        "ref",
+        "old_commit_oid",
+        "new_commit_oid",
+        "ref_sequence",
+        "signature"
+      ],
+      "response": [
+        "idempotent_ack",
+        "processed_index"
+      ]
+    },
+    {
+      "path": "/internal/git/v1/refs-snapshot",
+      "fields": [
+        "repo_id",
+        "since_watermark",
+        "cursor"
+      ],
+      "response": [
+        "signed_refs_digest",
+        "reachability_digest",
+        "snapshot_watermark"
+      ]
+    }
+  ],
+  "rules": [
+    "client-supplied pointer list is never authoritative",
+    "MinIOS3 never directly edits Git refs",
+    "GC requires signed complete snapshot"
+  ],
+  "role": "OPTIONAL_GIT_LFS_OR_LEGACY_GIT_COMPATIBILITY_E1",
+  "native_authority": "GitGit Rust Core"
+}

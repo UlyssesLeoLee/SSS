@@ -1,0 +1,24 @@
+stateDiagram-v2
+  [*] --> Draft
+  Draft --> Inventoried: scan all versions
+  Inventoried --> CapabilityChecked: capability evidence
+  CapabilityChecked --> Blocked: unsupported WORM / KMS / version
+  CapabilityChecked --> DryRunReviewed: compatible
+  DryRunReviewed --> Approved: dual approval
+  Approved --> InitialCopy
+  InitialCopy --> DeltaCatchup
+  DeltaCatchup --> Verify
+  Verify --> WriteFence: manifest/checksum passes
+  Verify --> Blocked: mismatch
+  WriteFence --> FinalDelta
+  FinalDelta --> RouteCutover: Raft route_epoch CAS
+  FinalDelta --> Blocked: untracked writes
+  RouteCutover --> Observe
+  Observe --> Completed: signed evidence
+  Observe --> ReverseCatchup: rollback requested AND new writes exist
+  ReverseCatchup --> WriteFence: reverse verified before route-CAS back
+  InitialCopy --> Paused: 429 / 503
+  DeltaCatchup --> Paused: retryable
+  Paused --> InitialCopy: checkpoint resume
+  Blocked --> [*]: manual decision
+  Completed --> [*]

@@ -1,0 +1,35 @@
+{
+  "version": "v2.1",
+  "date": "2026-10-26",
+  "status": "static-document-checks-passed; code-not-implemented; tests-not-run",
+  "requirements": {
+    "FR": 158,
+    "NFR": 44,
+    "UC": 22
+  },
+  "test_design": {
+    "UT": 186,
+    "IT": 194,
+    "ST": 249,
+    "UAT": 16,
+    "total": 645,
+    "executed": 0
+  },
+  "checks": [
+    "Original FR/NFR ids preserved",
+    "All 629 UT/IT/ST test requirement refs exist",
+    "16 UAT use case refs exist",
+    "New Markdown relative links resolve",
+    "All JSON parse",
+    "All YAML parse",
+    "Excel internal ZIP CRC",
+    "No test marked Pass"
+  ],
+  "residuals": [
+    "Concrete screenshot annotation labels were not available as extractable text; standard IPA/V-model phases mapped",
+    "No running Rust services",
+    "No runtime conformance / performance / WORM compliance evidence",
+    "Source selected crate licenses require locked-release SBOM check"
+  ],
+  "file_count_before_qa_manifest": 121
+}

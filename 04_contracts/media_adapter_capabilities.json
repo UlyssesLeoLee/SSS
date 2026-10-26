@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "DESIGN_ONLY",
+  "capabilities": [
+    "inspect",
+    "preview",
+    "diff",
+    "merge",
+    "dependencies"
+  ],
+  "support_states": [
+    "Supported",
+    "Conditional",
+    "Unsupported",
+    "Unverified"
+  ],
+  "formats": {
+    "images": [
+      "PNG",
+      "JPEG",
+      "TIFF",
+      "PSD"
+    ],
+    "video": [
+      "MP4",
+      "MOV"
+    ],
+    "audio": [
+      "WAV",
+      "FLAC"
+    ],
+    "3d": [
+      "GLB",
+      "FBX"
+    ],
+    "binary": [
+      "*"
+    ]
+  },
+  "default_fallback": {
+    "diff": "sha256-and-size-only",
+    "merge": "binary-conflict-manual-resolution",
+    "preview": "download-original"
+  },
+  "security": {
+    "worker": "isolated-readonly",
+    "cpu_memory_time_limits": "required",
+    "license_sbom": "required",
+    "no_secret_access": true
+  }
+}

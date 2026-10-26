@@ -1,0 +1,14 @@
+flowchart TD
+  A[Base Commit] --> D{Compare AssetId & Revisions}
+  L[Left Commit] --> D
+  R[Right Commit] --> D
+  D --> C{Only one side changed?}
+  C -->|Yes| F[Fast-forward selected AssetRevision]
+  C -->|No| K{MediaAdapter explicitly supports safe 3-way merge?}
+  K -->|Yes| T[Adapter safe merge with parents and provenance]
+  K -->|No| H[Manual conflict review, keep both revisions]
+  T --> V{Validate merged manifest + all receipts}
+  H --> V
+  F --> V
+  V -->|Valid| P[Publish GitGit Merge Commit with Ref CAS]
+  V -->|Invalid| X[Reject, preserve parents and old Ref]

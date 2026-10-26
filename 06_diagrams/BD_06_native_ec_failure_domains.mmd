@@ -1,0 +1,17 @@
+flowchart TB
+  OBJ[64MiB logical chunk] --> ENC[Rust EC Encoder 4+2]
+  ENC --> DA[AZ-A Node-1 data shard]
+  ENC --> DB[AZ-A Node-2 data shard]
+  ENC --> DC[AZ-B Node-3 data shard]
+  ENC --> DD[AZ-B Node-4 data shard]
+  ENC --> PE[AZ-C Node-5 parity shard]
+  ENC --> PF[AZ-C Node-6 parity shard]
+  DA --> ACK[Required all 6 durable receipts]
+  DB --> ACK
+  DC --> ACK
+  DD --> ACK
+  PE --> ACK
+  PF --> ACK
+  ACK --> M[Raft Manifest Commit]
+  M --> R[HTTP 2xx]
+  NOTE[AZ lost: >=4 shards read viable, new writes fail closed until compliant layout available] -.-> ENC

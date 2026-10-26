@@ -1,0 +1,15 @@
+sequenceDiagram
+ participant SDK as S3 Client
+ participant GW as Rust Gateway
+ participant META as Raft Metadata
+ participant EC as Native Encoding
+ participant NODE as 6 storage nodes
+ SDK->>GW: SigV4 PUT
+ GW->>META: prepare + quota + epoch
+ GW->>EC: chunked/AEAD stream
+ EC->>NODE: 6 shard streams / fsync
+ NODE-->>EC: six signed durable receipts
+ EC-->>GW: VerifiedManifest
+ GW->>META: atomic commit(head/version/outbox/quota/idem)
+ META-->>GW: committed read index
+ GW-->>SDK: 2xx version id etag

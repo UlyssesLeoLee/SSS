@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/minios3/manifest/v2",
+  "title": "ContentManifest v2 design",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 2
+    },
+    "chunker": {
+      "type": "string",
+      "enum": [
+        "fastcdc-v1",
+        "fixed-v1"
+      ]
+    },
+    "file_size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ordinal",
+          "offset",
+          "size",
+          "sha256"
+        ],
+        "properties": {
+          "ordinal": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "policy_epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tenant_encryption_domain": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "chunker",
+    "file_size",
+    "sha256",
+    "chunks",
+    "policy_epoch",
+    "tenant_encryption_domain"
+  ],
+  "x-invariants": [
+    "chunk offsets contiguous beginning at zero",
+    "sum(chunk.size) == file_size",
+    "canonical serialization required before computing manifest ID"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "FR": 158,
+  "NFR": 44,
+  "UC": 22,
+  "cases": 629,
+  "phases": {
+    "UT": 186,
+    "IT": 194,
+    "ST": 249
+  },
+  "added_fr": 54,
+  "added_nfr": 12,
+  "added_uc": 10,
+  "revised_fr": 15,
+  "missing_req_mappings": [],
+  "execution": "Not Run"
+}

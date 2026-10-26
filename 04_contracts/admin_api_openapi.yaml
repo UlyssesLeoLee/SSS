@@ -1,0 +1,262 @@
+openapi: 3.1.0
+info:
+  title: MinIOS3 Rust Admin API (Design Contract)
+  version: '1.0.0-draft'
+  description: |
+    基本设计阶段的管理API最小契约；不是已经部署的API或全部S3 API规范。
+    所有写操作必须经过RBAC、Policy Epoch、审计、四眼审批（必要时）。
+servers:
+  - url: https://admin.example.invalid/api/v1
+security:
+  - bearerAuth: []
+paths:
+  /capabilities:
+    get:
+      operationId: getCapabilities
+      summary: 查询模式/后端/版本逐API验证的能力清单
+      tags: [Capabilities]
+      responses:
+        '200':
+          description: Capability manifest
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CapabilityManifest' }
+  /cluster/health:
+    get:
+      operationId: getClusterHealth
+      summary: Raft quorum、数据分片及可写/可读风险概况
+      tags: [Cluster]
+      responses:
+        '200':
+          description: cluster health
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, readable, writable, updated_at]
+                properties:
+                  status: { type: string, enum: [Healthy, Degraded, Unavailable] }
+                  readable: { type: boolean }
+                  writable: { type: boolean }
+                  updated_at: { type: string, format: date-time }
+                  degraded_reasons: { type: array, items: { type: string } }
+  /buckets:
+    get:
+      operationId: listBuckets
+      summary: 按租户权限列举Bucket
+      tags: [Buckets]
+      parameters:
+        - in: query
+          name: tenant_id
+          schema: { type: string }
+      responses:
+        '200':
+          description: Bucket summary list
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Bucket' } }
+    post:
+      operationId: createBucket
+      summary: 在能力检查完成后创建Bucket
+      tags: [Buckets]
+      parameters:
+        - { in: header, name: Idempotency-Key, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateBucketInput' }
+      responses:
+        '201':
+          description: bucket created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Bucket' }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /backends:
+    get:
+      operationId: listBackends
+      summary: 后端及已验证能力状态
+      tags: [Backends]
+      responses:
+        '200':
+          description: list of backends
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [backend_id, mode, validation_state]
+                  properties:
+                    backend_id: { type: string }
+                    mode: { type: string, enum: [Native, Federation] }
+                    validation_state: { type: string, enum: [Verified, Unverified, Failed] }
+  /migrations/dry-run:
+    post:
+      operationId: planMigration
+      summary: 只读分析所有版本/保护/成本差异
+      tags: [Migration]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MigrationInput' }
+      responses:
+        '200':
+          description: preview with blockers
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MigrationPlan' }
+  /migrations:
+    post:
+      operationId: requestMigration
+      summary: 提交迁移审批申请，不直接执行切换
+      tags: [Migration]
+      parameters:
+        - { in: header, name: Idempotency-Key, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MigrationInput' }
+      responses:
+        '202':
+          description: Created job awaiting approval
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MigrationJob' }
+  /migrations/{job_id}:
+    get:
+      operationId: getMigration
+      summary: 查询checkpoint和不可迁移项
+      tags: [Migration]
+      parameters:
+        - { $ref: '#/components/parameters/JobId' }
+      responses:
+        '200':
+          description: Status
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MigrationJob' }
+  /migrations/{job_id}/approve:
+    post:
+      operationId: approveMigration
+      summary: 独立审批（不得由创建者单独批准高风险切换）
+      tags: [Migration]
+      parameters:
+        - { $ref: '#/components/parameters/JobId' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [approval_reason]
+              properties:
+                approval_reason: { type: string }
+      responses:
+        '202': { description: Approval recorded }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /migrations/{job_id}/cutover:
+    post:
+      operationId: cutoverMigration
+      summary: 写栅栏+final delta验证+Raft route epoch CAS，禁止跳步
+      tags: [Migration]
+      parameters:
+        - { $ref: '#/components/parameters/JobId' }
+        - { in: header, name: Idempotency-Key, required: true, schema: { type: string } }
+      responses:
+        '202': { description: Cutover operation accepted pending verification }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /audits:
+    get:
+      operationId: listAudits
+      summary: 按授权范围查询可追踪审计证据
+      tags: [Audit]
+      responses:
+        '200':
+          description: audit reference list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    event_id: { type: string }
+                    timestamp: { type: string, format: date-time }
+                    digest: { type: string }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
+  parameters:
+    JobId: { in: path, name: job_id, required: true, schema: { type: string } }
+  responses:
+    Conflict:
+      description: safety/epoch/retention/capability conflict
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ApiError' }
+    Forbidden:
+      description: access denied
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ApiError' }
+  schemas:
+    ApiError:
+      type: object
+      required: [code, request_id, message]
+      properties:
+        code: { type: string }
+        request_id: { type: string }
+        message: { type: string }
+    Bucket:
+      type: object
+      required: [bucket_id, tenant_id, name, mode, versioning, route_epoch]
+      properties:
+        bucket_id: { type: string }
+        tenant_id: { type: string }
+        name: { type: string }
+        mode: { type: string, enum: [Native, Federation] }
+        versioning: { type: string, enum: [Unversioned, Enabled, Suspended] }
+        route_epoch: { type: integer, minimum: 0 }
+        object_lock_enabled: { type: boolean }
+    CreateBucketInput:
+      type: object
+      required: [tenant_id, name, mode, backend_id]
+      properties:
+        tenant_id: { type: string }
+        name: { type: string }
+        mode: { type: string, enum: [Native, Federation] }
+        backend_id: { type: string }
+        object_lock_enabled: { type: boolean, default: false }
+    MigrationInput:
+      type: object
+      required: [tenant_id, bucket_id, source_backend_id, target_backend_id]
+      properties:
+        tenant_id: { type: string }
+        bucket_id: { type: string }
+        source_backend_id: { type: string }
+        target_backend_id: { type: string }
+    MigrationPlan:
+      type: object
+      required: [plan_id, blocked, blockers, total_versions, estimated_bytes]
+      properties:
+        plan_id: { type: string }
+        blocked: { type: boolean }
+        blockers: { type: array, items: { type: string } }
+        total_versions: { type: integer, minimum: 0 }
+        estimated_bytes: { type: integer, minimum: 0 }
+    MigrationJob:
+      type: object
+      required: [job_id, state, source_backend_id, target_backend_id, route_epoch]
+      properties:
+        job_id: { type: string }
+        state: { type: string }
+        source_backend_id: { type: string }
+        target_backend_id: { type: string }
+        route_epoch: { type: integer, minimum: 0 }
+        verified_count: { type: integer, minimum: 0 }
+        failed_count: { type: integer, minimum: 0 }
+        evidence_digest: { type: string }

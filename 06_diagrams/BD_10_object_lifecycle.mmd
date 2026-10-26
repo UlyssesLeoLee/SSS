@@ -1,0 +1,15 @@
+stateDiagram-v2
+  [*] --> Allocated
+  Allocated --> Receiving: stream bytes
+  Receiving --> PhysicallyDurable: required data receipts
+  Receiving --> Abandoned: disconnect or invalid checksum
+  PhysicallyDurable --> Committed: Raft catalog commit
+  PhysicallyDurable --> Abandoned: commit not executed and intent expires
+  Committed --> Superseded: new version same key
+  Committed --> DeleteMarked: DELETE without version for enabled bucket
+  Superseded --> RetentionEligible: expiration and no refs/holds
+  DeleteMarked --> RetentionEligible: no protected refs/holds
+  RetentionEligible --> Tombstoned: 2-phase GC approved
+  Tombstoned --> Purged: physical evidence collected
+  Abandoned --> Purged: grace/recheck
+  Purged --> [*]

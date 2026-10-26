@@ -1,0 +1,21 @@
+stateDiagram-v2
+ [*] --> Planned
+ Planned --> DryRun
+ DryRun --> Blocked: incompatible WORM/Version/region
+ DryRun --> Approved: separate operator approval
+ Approved --> BulkCopy
+ BulkCopy --> DeltaCatchup
+ DeltaCatchup --> Verify
+ Verify --> Blocked: sha/version/lock mismatch
+ Verify --> WriteFence
+ WriteFence --> FinalDelta
+ FinalDelta --> CutoverCAS
+ CutoverCAS --> Observing
+ Observing --> RetireApproved: protected source retention expires/approval
+ Observing --> ReverseCatchup: request rollback after ACKed new writes
+ ReverseCatchup --> WriteFenceBack
+ WriteFenceBack --> CutoverBackCAS: all target writes accounted
+ ReverseCatchup --> Blocked: cannot catch up
+ CutoverBackCAS --> Observing
+ RetireApproved --> Complete
+ Complete --> [*]

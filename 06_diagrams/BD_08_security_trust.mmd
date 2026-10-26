@@ -1,0 +1,11 @@
+flowchart LR
+  U[Untrusted S3 Client] -->|TLS+SigV4| A[Gateway Rust]
+  V[GitGit Core] -->|Signed Hook / mTLS| L[LFS Gateway Rust]
+  A --> P[Policy/STS Deny by Default]
+  L --> P
+  P --> META[Raft Metadata Trust Boundary]
+  META -->|signed ephemeral receipt tickets| ST[Storage mTLS]
+  META -->|audit outbox| AS[Separate WORM Audit Sink]
+  ST --> K[External KMS DEK Envelope]
+  PREVIEW[Untrusted Media Parser Sandbox] -->|scoped readonly input| ST
+  PREVIEW -. no default egress .-> INTERNET[Internet]

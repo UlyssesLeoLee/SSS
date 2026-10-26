@@ -1,0 +1,21 @@
+# MinIOS3 + GitGit native multimedia baseline v2.0 - illustrative only
+product:
+  version: v2.0-design
+  primary_goal: multimedia_version_control
+  gitgit_native_required: true
+  git_lfs_compatibility_enabled: false  # optional E1 adapter
+  core_runtime: rust
+media:
+  chunking:
+    algorithm: fastcdc-v1
+    min_size_bytes: 1048576
+    avg_size_bytes: 4194304
+    max_size_bytes: 16777216
+  manifest_hash: sha256
+  chunk_fast_hash: blake3
+  raw_binary_adapter_fallback: true
+  parser_workers_isolated: true
+security:
+  dedup_scope: tenant_encryption_domain
+  require_durable_receipts_before_gitgit_publish: true
+  gc_fail_closed: true

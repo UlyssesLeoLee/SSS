@@ -1,0 +1,17 @@
+﻿case_id,phase,role,scenario,uc,expected,release,result,evidence
+UAT-001,UAT,视频制作人,导入10GiB视频，切换两次Commit并取回原件,UC-GG-01,下载SHA256与两个历史原件各自完全一致,E0,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-002,UAT,图片设计师,导入PSD/PNG，查询变更，叠加对比,UC-02,原件hash不变，插件失效时退化为hash/size对比,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-003,UAT,声音制作人,两版WAV切换试听并比较时段差异,UC-GG-02,声道/时间码正确，未支持格式明确降级,E2,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-004,UAT,3D美术,提交GLB并查看材质、网格差异,UC-GG-03,对比来源明确，不能安全合并时不会覆盖,E2,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-005,UAT,游戏资产主管,修改贴图并查询受影响模型,UC-GG-04,依赖图能定位受影响AssetRevision,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-006,UAT,双人协作,相同资产在两个分支并行修改后合并,UC-GG-05,冲突显式可裁决，RefCAS无静默覆盖,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-007,UAT,远程制作人,离线部分克隆后修改、回连并同步,UC-GG-06,增量上传仅传缺块，冲突有可复现提示,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-008,UAT,主美审批,提交资源并经Review后发布标签,UC-GG-09,未批准分支无法发布，审批与Commit绑定,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-009,UAT,运维管理员,进行S3双后端迁移与回滚演练,UC-03,旧endpoint不变、历史hash一致，未追平禁止切换,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-010,UAT,合规负责人,为版本设Legal Hold后尝试删除,UC-05,所有受保护版本拒绝删除且审计可查,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-011,UAT,GitGit管理员,禁用Git LFS适配，完成完整提交流程,UC-01,原生Commit、Checkout、增量上传完全可用,E0,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-012,UAT,安全审计员,撤销用户权限后复用旧token/URL,UC-GG-08,超权限读取失败且审计含request-id,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-013,UAT,存储运维,误删Branch并发GC及恢复历史,UC-GG-10,仍受保护内容均可重新检出,E1,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-014,UAT,S3客户端用户,通过AWS SDK对统一端点PUT/GET/Range,UC-07,支持声明的S3能力，Hash和Range响应正确,E0,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-015,UAT,制作管理员,生成代理视频并回溯原件和工具版本,UC-GG-01,每个派生资产指向稳定源OID、版本、参数,E2,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff
+UAT-016,UAT,DevOps,断外网，单机GitGit+MinIOS3完整业务闭环,UC-GG-01,不依赖第三方在线MinIO/AWS/外部Git组件,E0,Not Run,BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff

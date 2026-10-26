@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: GitGit Native Media Versioning API
+  version: 2.0.0-draft
+  description: Design contract only. GitGit controls Commit Ref AssetRevision; MinIOS3 controls CAS Manifest Chunk.
+servers:
+  - url: https://gitgit.example.invalid
+security:
+  - bearerAuth: []
+paths:
+  /v1/assets/uploads:
+    post:
+      operationId: beginUpload
+      summary: Begin scoped upload session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BeginUpload'
+      responses:
+        '201':
+          description: Upload session created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UploadSession' }
+        '403': { description: Repo upload forbidden }
+  /v1/assets/uploads/{uploadId}/seal:
+    post:
+      operationId: sealManifest
+      summary: Verify and seal immutable manifest with durable receipt
+      parameters:
+        - name: uploadId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SealRequest' }
+      responses:
+        '200':
+          description: Manifest seal and signed durable receipt
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SealResponse' }
+        '409': { description: Unverified or missing chunk }
+  /v1/gitgit/repos/{repoId}/commits/prepare:
+    post:
+      operationId: prepareCommit
+      parameters:
+        - name: repoId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PrepareRequest' }
+      responses:
+        '200':
+          description: Prepared commit ticket
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PrepareResponse' }
+        '409': { description: Ref conflict or missing manifest }
+  /v1/gitgit/repos/{repoId}/commits/publish:
+    post:
+      operationId: publishCommit
+      parameters:
+        - name: repoId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PublishRequest' }
+      responses:
+        '200':
+          description: CAS-published GitGit commit
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PublishResponse' }
+        '409': { description: Ref conflict }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer }
+  schemas:
+    BeginUpload:
+      type: object
+      required: [repo_id, path, size, whole_sha256, idempotency_key]
+      properties:
+        repo_id: { type: string }
+        path: { type: string }
+        size: { type: integer, minimum: 0 }
+        whole_sha256: { type: string }
+        idempotency_key: { type: string }
+    UploadSession:
+      type: object
+      required: [upload_id, chunker, expires_at]
+      properties:
+        upload_id: { type: string }
+        chunker: { type: string }
+        expires_at: { type: string, format: date-time }
+    SealRequest:
+      type: object
+      required: [manifest, file_sha256]
+      properties:
+        manifest: { type: object }
+        file_sha256: { type: string }
+    SealResponse:
+      type: object
+      required: [manifest_id, signed_durable_receipt, policy_epoch, placement_epoch]
+      properties:
+        manifest_id: { type: string }
+        signed_durable_receipt: { type: string }
+        policy_epoch: { type: integer }
+        placement_epoch: { type: integer }
+    PrepareRequest:
+      type: object
+      required: [ref_name, expected_ref_revision, tree_digest, manifest_receipts, idempotency_key]
+      properties:
+        ref_name: { type: string }
+        expected_ref_revision: { type: integer }
+        tree_digest: { type: string }
+        manifest_receipts: { type: array, items: { type: string } }
+        idempotency_key: { type: string }
+    PrepareResponse:
+      type: object
+      required: [ticket_id, prepared_commit_id]
+      properties:
+        ticket_id: { type: string }
+        prepared_commit_id: { type: string }
+    PublishRequest:
+      type: object
+      required: [ticket_id, idempotency_key]
+      properties:
+        ticket_id: { type: string }
+        idempotency_key: { type: string }
+    PublishResponse:
+      type: object
+      required: [commit_id, new_ref_revision, outbox_seq]
+      properties:
+        commit_id: { type: string }
+        new_ref_revision: { type: integer }
+        outbox_seq: { type: integer }

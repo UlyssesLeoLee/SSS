@@ -1,0 +1,4034 @@
+[
+  {
+    "id": "FR-CORE-001",
+    "title": "独立部署",
+    "category": "CORE",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-001",
+    "ut_ids": [
+      "UT-FR-CORE-001"
+    ],
+    "it_ids": [
+      "IT-FR-CORE-001"
+    ],
+    "st_ids": [
+      "ST-FR-CORE-001"
+    ],
+    "requirement_acceptance": "断开公网后，GitGit原生提交、版本回退、媒体分块上传/下载、MinIOS3 PUT/GET/LIST和管理可正常完成；禁用LFS适配仍通过。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-CORE-002",
+    "title": "Native 与 Federation 运行模式",
+    "category": "CORE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-001",
+    "ut_ids": [
+      "UT-FR-CORE-002"
+    ],
+    "it_ids": [
+      "IT-FR-CORE-002"
+    ],
+    "st_ids": [
+      "ST-FR-CORE-002"
+    ],
+    "requirement_acceptance": "两种部署模式均通过 S3 核心兼容测试；模式切换不得改变现有对象内容。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-CORE-003",
+    "title": "租户层级",
+    "category": "CORE",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-001",
+    "ut_ids": [
+      "UT-FR-CORE-003"
+    ],
+    "it_ids": [
+      "IT-FR-CORE-003"
+    ],
+    "st_ids": [
+      "ST-FR-CORE-003"
+    ],
+    "requirement_acceptance": "租户 A 凭据无法枚举或读取租户 B 的任何资源；隔离自动测试100%通过。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-CORE-004",
+    "title": "租户资源计量和配额",
+    "category": "CORE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-001",
+    "ut_ids": [
+      "UT-FR-CORE-004"
+    ],
+    "it_ids": [
+      "IT-FR-CORE-004"
+    ],
+    "st_ids": [
+      "ST-FR-CORE-004"
+    ],
+    "requirement_acceptance": "超出硬配额返回明确错误，管理员可追踪来源；计量误差可核对。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-CORE-005",
+    "title": "存储命名空间和资源映射",
+    "category": "CORE",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-001",
+    "ut_ids": [
+      "UT-FR-CORE-005"
+    ],
+    "it_ids": [
+      "IT-FR-CORE-005"
+    ],
+    "st_ids": [
+      "ST-FR-CORE-005"
+    ],
+    "requirement_acceptance": "迁移后使用原端点、原 Bucket/Key 可以正确读取原版本。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-CORE-006",
+    "title": "配置版本与回滚",
+    "category": "CORE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-001",
+    "ut_ids": [
+      "UT-FR-CORE-006"
+    ],
+    "it_ids": [
+      "IT-FR-CORE-006"
+    ],
+    "st_ids": [
+      "ST-FR-CORE-006"
+    ],
+    "requirement_acceptance": "错误路由配置可恢复上一生效版本，不改变已确认对象。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-CORE-007",
+    "title": "多区域和数据驻留策略",
+    "category": "CORE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-001",
+    "ut_ids": [
+      "UT-FR-CORE-007"
+    ],
+    "it_ids": [
+      "IT-FR-CORE-007"
+    ],
+    "st_ids": [
+      "ST-FR-CORE-007"
+    ],
+    "requirement_acceptance": "禁止区域间转移时，对应迁移/复制任务无法启动并写入审计记录。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-CORE-008",
+    "title": "能力发现接口",
+    "category": "CORE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-001",
+    "ut_ids": [
+      "UT-FR-CORE-008"
+    ],
+    "it_ids": [
+      "IT-FR-CORE-008"
+    ],
+    "st_ids": [
+      "ST-FR-CORE-008"
+    ],
+    "requirement_acceptance": "API和UI可取得对应版本的能力清单；不支持功能明确返回非兼容错误。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-001",
+    "title": "Bucket 生命周期",
+    "category": "S3",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-001",
+      "UT-ADV-SIGV4-RAW",
+      "UT-ADV-SIGV4-HEAD",
+      "UT-ADV-MPU-RACE",
+      "UT-ADV-LIST-TAMPER"
+    ],
+    "it_ids": [
+      "IT-FR-S3-001",
+      "IT-ADV-S3-CLIENTS",
+      "IT-ADV-S3-CHECKSUM",
+      "IT-ADV-S3-XML",
+      "IT-ADV-S3-PRESIGN",
+      "IT-ADV-S3-HOST"
+    ],
+    "st_ids": [
+      "ST-FR-S3-001",
+      "ST-ADV-S3-LIST-MANY",
+      "ST-ADV-S3-VERSIONS",
+      "ST-ADV-S3-PRESIGNED",
+      "ST-ADV-S3-20G"
+    ],
+    "requirement_acceptance": "创建、列举、空桶删除、权限错误及地域配置测试通过。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-002",
+    "title": "标准对象读写",
+    "category": "S3",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-002"
+    ],
+    "it_ids": [
+      "IT-FR-S3-002"
+    ],
+    "st_ids": [
+      "ST-FR-S3-002"
+    ],
+    "requirement_acceptance": "主流 S3 SDK 的上传、下载、覆盖、条件请求符合兼容基线。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-003",
+    "title": "对象列举",
+    "category": "S3",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-003"
+    ],
+    "it_ids": [
+      "IT-FR-S3-003"
+    ],
+    "st_ids": [
+      "ST-FR-S3-003"
+    ],
+    "requirement_acceptance": "千万级键空间分页不漏不重；与提交确认的写入符合指定一致性。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-004",
+    "title": "分段上传",
+    "category": "S3",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-004"
+    ],
+    "it_ids": [
+      "IT-FR-S3-004"
+    ],
+    "st_ids": [
+      "ST-FR-S3-004"
+    ],
+    "requirement_acceptance": "分段乱序、断线续传、重复Complete、Abort及并发重试通过。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-005",
+    "title": "版本控制",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-005"
+    ],
+    "it_ids": [
+      "IT-FR-S3-005"
+    ],
+    "st_ids": [
+      "ST-FR-S3-005"
+    ],
+    "requirement_acceptance": "覆盖与删除后，历史版本可依授权恢复，版本标识稳定且唯一。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-006",
+    "title": "签名鉴权",
+    "category": "S3",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-006"
+    ],
+    "it_ids": [
+      "IT-FR-S3-006"
+    ],
+    "st_ids": [
+      "ST-FR-S3-006"
+    ],
+    "requirement_acceptance": "官方AWS SDK认证场景及坏签名、过期时间戳均有正确响应。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-007",
+    "title": "临时预签名",
+    "category": "S3",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-007"
+    ],
+    "it_ids": [
+      "IT-FR-S3-007"
+    ],
+    "st_ids": [
+      "ST-FR-S3-007"
+    ],
+    "requirement_acceptance": "过期、越权、撤销后无法访问；范围约束与审计关联正确。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-008",
+    "title": "HTTP Range 与流式传输",
+    "category": "S3",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-008"
+    ],
+    "it_ids": [
+      "IT-FR-S3-008"
+    ],
+    "st_ids": [
+      "ST-FR-S3-008"
+    ],
+    "requirement_acceptance": "对≥20GiB对象进行Range读取，不整体加载内存，返回正确206与校验。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-009",
+    "title": "对象属性及标签",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-009"
+    ],
+    "it_ids": [
+      "IT-FR-S3-009"
+    ],
+    "st_ids": [
+      "ST-FR-S3-009"
+    ],
+    "requirement_acceptance": "元数据/标签在复制迁移后按策略完整保留。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-010",
+    "title": "分层策略",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-010"
+    ],
+    "it_ids": [
+      "IT-FR-S3-010"
+    ],
+    "st_ids": [
+      "ST-FR-S3-010"
+    ],
+    "requirement_acceptance": "默认拒绝、多租户隔离、策略冲突和SDK常见操作矩阵通过。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-011",
+    "title": "生命周期管理",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-011"
+    ],
+    "it_ids": [
+      "IT-FR-S3-011"
+    ],
+    "st_ids": [
+      "ST-FR-S3-011"
+    ],
+    "requirement_acceptance": "TTL到期任务正确执行；被保留/保护的版本不被误删。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-012",
+    "title": "Object Lock",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-012"
+    ],
+    "it_ids": [
+      "IT-FR-S3-012"
+    ],
+    "st_ids": [
+      "ST-FR-S3-012"
+    ],
+    "requirement_acceptance": "WORM对覆盖、版本删除、撤销保留、时钟回拨等攻击测试拒绝；独立审计完成。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-013",
+    "title": "事件通知",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-013"
+    ],
+    "it_ids": [
+      "IT-FR-S3-013"
+    ],
+    "st_ids": [
+      "ST-FR-S3-013"
+    ],
+    "requirement_acceptance": "消费者重复收到事件也能幂等处理；失败可重放。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-014",
+    "title": "SSE/KMS兼容",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-014"
+    ],
+    "it_ids": [
+      "IT-FR-S3-014"
+    ],
+    "st_ids": [
+      "ST-FR-S3-014"
+    ],
+    "requirement_acceptance": "使用配置KMS读写正常，密钥拒绝/轮换行为受测。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-015",
+    "title": "Object Checksum",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-015"
+    ],
+    "it_ids": [
+      "IT-FR-S3-015"
+    ],
+    "st_ids": [
+      "ST-FR-S3-015"
+    ],
+    "requirement_acceptance": "篡改块校验失败；迁移前后SHA-256一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-016",
+    "title": "S3 Batch 操作",
+    "category": "S3",
+    "release": "E2",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-016"
+    ],
+    "it_ids": [
+      "IT-FR-S3-016"
+    ],
+    "st_ids": [
+      "ST-FR-S3-016"
+    ],
+    "requirement_acceptance": "10万对象批量任务中断重启不丢状态、无重复破坏性变更。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-017",
+    "title": "S3 兼容性清单",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-017"
+    ],
+    "it_ids": [
+      "IT-FR-S3-017"
+    ],
+    "st_ids": [
+      "ST-FR-S3-017"
+    ],
+    "requirement_acceptance": "发布版本附机器可读兼容清单，并对宣称支持的API自动回归。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-018",
+    "title": "虚拟主机与路径风格",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-018"
+    ],
+    "it_ids": [
+      "IT-FR-S3-018"
+    ],
+    "st_ids": [
+      "ST-FR-S3-018"
+    ],
+    "requirement_acceptance": "两种地址形式在合法桶名、特殊字符、代理TLS下通过。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-S3-019",
+    "title": "对象幂等与并发条件",
+    "category": "S3",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-003",
+    "ut_ids": [
+      "UT-FR-S3-019"
+    ],
+    "it_ids": [
+      "IT-FR-S3-019"
+    ],
+    "st_ids": [
+      "ST-FR-S3-019"
+    ],
+    "requirement_acceptance": "重试不会生成损坏版本；并发相同键操作呈现可解释顺序。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-001",
+    "title": "Git LFS Batch API",
+    "category": "GIT",
+    "release": "E1",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-001"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-001"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-001"
+    ],
+    "requirement_acceptance": "LFS兼容客户端传输与SHA校验通过；禁用LFS兼容服务不影响GitGit原生E0媒体版本链路。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-002",
+    "title": "Git LFS Locking API",
+    "category": "GIT",
+    "release": "E1",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-002"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-002"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-002"
+    ],
+    "requirement_acceptance": "GitGit锁与LFS锁查询一致；未启用LFS时原生协作锁仍有效。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-003",
+    "title": "标准Git独立性",
+    "category": "GIT",
+    "release": "E1",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-003"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-003"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-003"
+    ],
+    "requirement_acceptance": "关闭标准Git互操作插件后GitGit原生版本管理仍能提交、分支、比较和恢复。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-004",
+    "title": "内容寻址",
+    "category": "GIT",
+    "release": "E0",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-004"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-004"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-004"
+    ],
+    "requirement_acceptance": "同字节同策略域复用且不改变原件；租户隔离，读取重新校验。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-005",
+    "title": "引用完整性检查",
+    "category": "GIT",
+    "release": "E0",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-005"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-005"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-005"
+    ],
+    "requirement_acceptance": "缺块、旧epoch、非法ACL或过期票据均拒绝提交；旧Ref保持不变。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-006",
+    "title": "版本关联索引",
+    "category": "GIT",
+    "release": "E0",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-006"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-006"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-006"
+    ],
+    "requirement_acceptance": "Commit→资产→内容块→物理存放可逆向追踪且hash验证一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-007",
+    "title": "Git分支/Tag与媒体历史",
+    "category": "GIT",
+    "release": "E0",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-007"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-007"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-007"
+    ],
+    "requirement_acceptance": "创建、切换、比较、回退GitGit分支正确还原媒体内容；S3版本ID差异不影响历史。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-008",
+    "title": "Git身份继承",
+    "category": "GIT",
+    "release": "E0",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-008"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-008"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-008"
+    ],
+    "requirement_acceptance": "撤销GitGit权限后新的原生读取及签名URL请求被拒；跨租户不可枚举CAS。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-009",
+    "title": "Git事件接入",
+    "category": "GIT",
+    "release": "E0",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-009"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-009"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-009"
+    ],
+    "requirement_acceptance": "重复、乱序、遗漏后通过快照watermark对账；GC对未证完整可达性拒删。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-010",
+    "title": "媒体垃圾回收安全",
+    "category": "GIT",
+    "release": "E1",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-010"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-010"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-010"
+    ],
+    "requirement_acceptance": "在并发新引用、迁移、快照与合法保留期间零误删。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-011",
+    "title": "离线和部分克隆",
+    "category": "GIT",
+    "release": "E1",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-011"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-011"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-011"
+    ],
+    "requirement_acceptance": "离线提交后重连按冲突策略重新校验；只下载请求Chunk并保持SHA一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-012",
+    "title": "仓库配额和限流",
+    "category": "GIT",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-012"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-012"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-012"
+    ],
+    "requirement_acceptance": "超配额上传在写入前可预测拒绝，已存在历史不被误删。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-013",
+    "title": "提交一致性补偿",
+    "category": "GIT",
+    "release": "E0",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-013"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-013"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-013"
+    ],
+    "requirement_acceptance": "断电、超时、重复请求不会产生可见缺块提交；补偿可恢复且GC保护。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GIT-014",
+    "title": "现有Git迁移",
+    "category": "GIT",
+    "release": "E2",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-006",
+    "ut_ids": [
+      "UT-FR-GIT-014"
+    ],
+    "it_ids": [
+      "IT-FR-GIT-014"
+    ],
+    "st_ids": [
+      "ST-FR-GIT-014"
+    ],
+    "requirement_acceptance": "导入后保留历史关系与内容摘要且输出无法映射特性的差异报告。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-001",
+    "title": "多媒体资产分类",
+    "category": "MEDIA",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-001"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-001"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-001"
+    ],
+    "requirement_acceptance": "至少PNG/JPEG/TIFF/MP4/MOV/WAV/FLAC/GLB/FBX/PSD/ZIP完成端到端验证。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-002",
+    "title": "资产元数据",
+    "category": "MEDIA",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-002"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-002"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-002"
+    ],
+    "requirement_acceptance": "元数据与Git Commit及OID可以双向检索。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-003",
+    "title": "内容零改写",
+    "category": "MEDIA",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-003"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-003"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-003"
+    ],
+    "requirement_acceptance": "下载SHA-256与原上传文件相同。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-004",
+    "title": "异步预览",
+    "category": "MEDIA",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-004"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-004"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-004"
+    ],
+    "requirement_acceptance": "预览出错时下载与版本读取不受影响，且有失败原因。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-005",
+    "title": "版本差异辅助",
+    "category": "MEDIA",
+    "release": "E1",
+    "status": "v2修订-待评审",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-005"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-005"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-005"
+    ],
+    "requirement_acceptance": "通过媒体专用golden fixture识别变化，无法识别时回退hash/size而不宣称语义相等。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-006",
+    "title": "资产搜索",
+    "category": "MEDIA",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-006"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-006"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-006"
+    ],
+    "requirement_acceptance": "指定索引规模下按分页检索，结果遵循权限隔离。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-007",
+    "title": "媒体预览安全",
+    "category": "MEDIA",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-007"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-007"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-007"
+    ],
+    "requirement_acceptance": "构造异常媒体文件不能访问宿主机密钥或其他租户对象。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-008",
+    "title": "预览内容与源关联",
+    "category": "MEDIA",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-008"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-008"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-008"
+    ],
+    "requirement_acceptance": "源变化触发可识别的重新生成；源内容保持不可变。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-009",
+    "title": "媒体交付",
+    "category": "MEDIA",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-009"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-009"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-009"
+    ],
+    "requirement_acceptance": "断网后续传与视频Seek测试通过；缓存不泄漏租户数据。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MEDIA-010",
+    "title": "许可与溯源",
+    "category": "MEDIA",
+    "release": "E2",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-009",
+    "ut_ids": [
+      "UT-FR-MEDIA-010"
+    ],
+    "it_ids": [
+      "IT-FR-MEDIA-010"
+    ],
+    "st_ids": [
+      "ST-FR-MEDIA-010"
+    ],
+    "requirement_acceptance": "受限制素材无法被标记为可公开发布。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-001",
+    "title": "S3后端适配",
+    "category": "XCHG",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-001"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-001"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-001"
+    ],
+    "requirement_acceptance": "同一测试数据在至少AWS S3与另一个自建S3实现上完整往返。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-002",
+    "title": "非S3供应商适配",
+    "category": "XCHG",
+    "release": "E2",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-002"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-002"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-002"
+    ],
+    "requirement_acceptance": "增补适配器无需更改S3客户端公开接口。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-003",
+    "title": "统一端点",
+    "category": "XCHG",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-003"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-003"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-003",
+      "ST-UC-07"
+    ],
+    "requirement_acceptance": "原有客户端仅改Endpoint/密钥即可访问受支持S3 API。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-004",
+    "title": "后端能力矩阵",
+    "category": "XCHG",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-004"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-004"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-004",
+      "ST-UC-08"
+    ],
+    "requirement_acceptance": "要求WORM而后端不满足时禁止部署，不允许虚假成功。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-005",
+    "title": "存储策略与放置",
+    "category": "XCHG",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-005"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-005"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-005"
+    ],
+    "requirement_acceptance": "Dry-run输出每条规则的匹配原因和成本估计。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-006",
+    "title": "迁移作业",
+    "category": "XCHG",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-006",
+      "UT-ADV-MIG-FENCE"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-006",
+      "IT-ADV-MIG-LOCK",
+      "IT-ADV-MIG-WATER",
+      "IT-ADV-MIG-REVERSE"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-006",
+      "ST-UC-03",
+      "ST-ADV-MIG-MILLION",
+      "ST-ADV-MIG-KILL",
+      "ST-ADV-MIG-CUTOVER",
+      "ST-ADV-MIG-OLDVER",
+      "ST-ADV-MIG-RESIDENCY"
+    ],
+    "requirement_acceptance": "百万对象迁移中断后恢复，不漏文件；核验摘要与元数据。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-007",
+    "title": "迁移预演",
+    "category": "XCHG",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-007"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-007"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-007"
+    ],
+    "requirement_acceptance": "存在不兼容Object Lock时必须报阻断项。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-008",
+    "title": "无损切换",
+    "category": "XCHG",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-008"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-008"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-008",
+      "ST-UC-03"
+    ],
+    "requirement_acceptance": "生产演练迁移失败可回退到源端，用户已确认写入不丢失。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-009",
+    "title": "双端校验",
+    "category": "XCHG",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-009"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-009"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-009",
+      "ST-UC-03"
+    ],
+    "requirement_acceptance": "对人为损坏和缺失分别准确告警。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-010",
+    "title": "连续复制",
+    "category": "XCHG",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-010"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-010"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-010"
+    ],
+    "requirement_acceptance": "乱序和网络分区不产生静默覆盖；复制滞后指标可见。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-011",
+    "title": "冲突控制",
+    "category": "XCHG",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-011"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-011"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-011"
+    ],
+    "requirement_acceptance": "并发写同键情况下不允许最后写入静默掩盖冲突。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-012",
+    "title": "读取故障转移",
+    "category": "XCHG",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-012"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-012"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-012"
+    ],
+    "requirement_acceptance": "故障转移返回一致性状态；未同步数据不得误报存在。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-013",
+    "title": "后端出口开放",
+    "category": "XCHG",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-013"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-013"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-013"
+    ],
+    "requirement_acceptance": "第三方工具可从导出的数据重建完整键空间及版本关系。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-014",
+    "title": "成本与计量",
+    "category": "XCHG",
+    "release": "E2",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-014"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-014"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-014"
+    ],
+    "requirement_acceptance": "成本报表能与供应商账单进行差额核对。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-XCHG-015",
+    "title": "底层供应商异常隔离",
+    "category": "XCHG",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-007",
+    "ut_ids": [
+      "UT-FR-XCHG-015"
+    ],
+    "it_ids": [
+      "IT-FR-XCHG-015"
+    ],
+    "st_ids": [
+      "ST-FR-XCHG-015",
+      "ST-UC-11"
+    ],
+    "requirement_acceptance": "一个后端故障不会拖垮其它桶的正常请求。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-001",
+    "title": "多节点横向扩展",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-001",
+      "UT-ADV-RAFT-REPLAY",
+      "UT-ADV-RAFT-SNAP",
+      "UT-ADV-EC-PLACEMENT",
+      "UT-ADV-EC-NONCE"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-001",
+      "IT-ADV-META-DATA"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-001",
+      "ST-ADV-NATIVE-ZONE",
+      "ST-ADV-NATIVE-SPLIT",
+      "ST-ADV-NATIVE-BITROT",
+      "ST-ADV-NATIVE-REBAL",
+      "ST-ADV-SEC-RANSOM",
+      "ST-ADV-SEC-OID"
+    ],
+    "requirement_acceptance": "扩容演练不需要停掉全部S3服务。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-002",
+    "title": "纠删码/数据保护",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-002"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-002"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-002",
+      "ST-UC-04"
+    ],
+    "requirement_acceptance": "配置容错范围内故障可读取完整数据，超出范围进入安全只读/错误状态。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-003",
+    "title": "故障域意识",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-003"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-003"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-003"
+    ],
+    "requirement_acceptance": "放置审计证明碎片满足故障域策略。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-004",
+    "title": "节点自愈与巡检",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-004"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-004"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-004",
+      "ST-UC-04"
+    ],
+    "requirement_acceptance": "混合故障注入后数据摘要不变，进度和剩余风险可查询。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-005",
+    "title": "存储一致性语义",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-005"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-005"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-005"
+    ],
+    "requirement_acceptance": "ACK后GET/HEAD/LIST（在规定作用域）立即可见，不出现半对象。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-006",
+    "title": "数据与控制面故障隔离",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-006"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-006"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-006"
+    ],
+    "requirement_acceptance": "单点注入与恢复试验通过。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-007",
+    "title": "容量水位保护",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-007"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-007"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-007"
+    ],
+    "requirement_acceptance": "容量接近上限能预测并安全拒绝写入。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-008",
+    "title": "数据损坏检测",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-008"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-008"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-008"
+    ],
+    "requirement_acceptance": "注入存储位错误后检测到并在冗余足够时自愈。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-NATIVE-009",
+    "title": "故障演练接口",
+    "category": "NATIVE",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-005",
+    "ut_ids": [
+      "UT-FR-NATIVE-009"
+    ],
+    "it_ids": [
+      "IT-FR-NATIVE-009"
+    ],
+    "st_ids": [
+      "ST-FR-NATIVE-009"
+    ],
+    "requirement_acceptance": "每个发布候选版本执行故障注入测试。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-001",
+    "title": "SSO与身份联邦",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-001",
+      "UT-ADV-OBJLOCK-TIME",
+      "UT-ADV-OBJLOCK-NULL",
+      "UT-ADV-AUDIT-ATOMIC"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-001",
+      "IT-ADV-KMS-DENY",
+      "IT-ADV-AUDIT-SINK"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-001",
+      "ST-ADV-AUDIT-WORM"
+    ],
+    "requirement_acceptance": "SSO登录/登出/禁用账号后会话生效性经测试。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-002",
+    "title": "IAM/RBAC/ABAC",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-002"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-002"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-002"
+    ],
+    "requirement_acceptance": "尝试越权访问、横向提权和策略覆盖均失败。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-003",
+    "title": "短期凭据",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-003"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-003"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-003"
+    ],
+    "requirement_acceptance": "过期Token和已撤销AccessKey被拒绝并审计。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-004",
+    "title": "传输加密",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-004"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-004"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-004"
+    ],
+    "requirement_acceptance": "未加密入口默认关闭；TLS配置可扫描验证。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-005",
+    "title": "静态加密与密钥管理",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-005"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-005"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-005"
+    ],
+    "requirement_acceptance": "KMS故障不会造成明文回退，轮换后的旧数据可访问。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-006",
+    "title": "审计追踪",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-006"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-006"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-006"
+    ],
+    "requirement_acceptance": "追踪一个Git Commit至对应OID和S3 Version与访问日志。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-007",
+    "title": "不可篡改审计",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-007"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-007"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-007",
+      "ST-UC-05"
+    ],
+    "requirement_acceptance": "系统管理员不能通过普通运维权限覆盖已封存审计记录。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-008",
+    "title": "恶意软件与内容控制",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-008"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-008"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-008"
+    ],
+    "requirement_acceptance": "恶意媒体可隔离并可追查，原始SHA-256和隔离动作有证据。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-009",
+    "title": "管理面防护",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-009"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-009"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-009"
+    ],
+    "requirement_acceptance": "删除存储池、强制解锁、迁移切换触发审批规则。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-010",
+    "title": "安全加固与供应链",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-010"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-010"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-010"
+    ],
+    "requirement_acceptance": "关键漏洞阻止正式发布，SBOM可下载。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-011",
+    "title": "合法持有与数据隔离",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-011"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-011"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-011"
+    ],
+    "requirement_acceptance": "租户删除前检测WORM和Git活跃引用，依法合规执行。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-012",
+    "title": "秘密管理",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-012"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-012"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-012"
+    ],
+    "requirement_acceptance": "数据导出和日志不包含明文AccessKey/SecretKey。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-013",
+    "title": "勒索防护",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-013"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-013"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-013"
+    ],
+    "requirement_acceptance": "批量误删后可以按保留策略恢复；模拟攻击产生报警。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-SEC-014",
+    "title": "合规声明边界",
+    "category": "SEC",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-008",
+    "ut_ids": [
+      "UT-FR-SEC-014"
+    ],
+    "it_ids": [
+      "IT-FR-SEC-014"
+    ],
+    "st_ids": [
+      "ST-FR-SEC-014"
+    ],
+    "requirement_acceptance": "发布材料包含适用范围、例外、证据和未认证声明。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-001",
+    "title": "Web管理控制台",
+    "category": "OPS",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-001",
+      "UT-ADV-JOB-LEASE"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-001",
+      "IT-ADV-MEDIA-SANDBOX"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-001",
+      "ST-ADV-B1-READWRITE",
+      "ST-ADV-MEDIA-SAFE",
+      "ST-ADV-SUPPLYCHAIN"
+    ],
+    "requirement_acceptance": "任务列表和对象详情三步内可进入，角色不可见不属于自己的资源。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-002",
+    "title": "版本关系可视化",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-002"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-002"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-002"
+    ],
+    "requirement_acceptance": "定位一项历史资源无需理解后端私有路径。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-003",
+    "title": "迁移与复制工作台",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-003"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-003"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-003"
+    ],
+    "requirement_acceptance": "操作可审计；危险动作有影响预览。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-004",
+    "title": "媒体浏览器",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-004"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-004"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-004"
+    ],
+    "requirement_acceptance": "图像、视频、3D预览异常不阻断下载。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-005",
+    "title": "多语言",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-005"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-005"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-005"
+    ],
+    "requirement_acceptance": "语言切换不改变权限/对象数据；日语信息自然一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-006",
+    "title": "无障碍与认知负荷",
+    "category": "OPS",
+    "release": "E2",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-006"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-006"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-006"
+    ],
+    "requirement_acceptance": "键盘完成桶创建、恢复版本和权限查询，核心流程可用性评审通过。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-007",
+    "title": "CLI与配置即代码",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-007"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-007"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-007"
+    ],
+    "requirement_acceptance": "操作与Web实现相同权限与审计策略。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-008",
+    "title": "API文档与SDK示例",
+    "category": "OPS",
+    "release": "E2",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-008"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-008"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-008"
+    ],
+    "requirement_acceptance": "新开发者按文档完成上传、Git LFS和迁移样例。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-009",
+    "title": "审计查询与报告",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-009"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-009"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-009"
+    ],
+    "requirement_acceptance": "报告可重现追查一次管理员动作与Git修改。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-010",
+    "title": "监控与告警",
+    "category": "OPS",
+    "release": "E0",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-010"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-010"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-010"
+    ],
+    "requirement_acceptance": "Grafana/兼容仪表板可读取关键指标并按阈值触发。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-011",
+    "title": "零停机滚动升级",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-011"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-011"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-011"
+    ],
+    "requirement_acceptance": "在允许的单节点轮替中读写持续；失败能按预案恢复。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-012",
+    "title": "备份与恢复",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-012"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-012"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-012",
+      "ST-UC-12",
+      "ST-ADV-DR-RESTORE",
+      "ST-ADV-DR-RPO",
+      "ST-ADV-OPS-ROLL",
+      "ST-ADV-OPS-OFFLINE"
+    ],
+    "requirement_acceptance": "仅从备份与对象数据可复原Git映射和用户可读对象。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-013",
+    "title": "异常与根因信息",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-013"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-013"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-013"
+    ],
+    "requirement_acceptance": "S3错误+后台trace可串联到具体后端与操作。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-014",
+    "title": "运维 runbook",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-014"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-014"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-014"
+    ],
+    "requirement_acceptance": "演练人员不依赖开发者介入完成预定操作。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-OPS-015",
+    "title": "服务水平报告",
+    "category": "OPS",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-010",
+    "ut_ids": [
+      "UT-FR-OPS-015"
+    ],
+    "it_ids": [
+      "IT-FR-OPS-015"
+    ],
+    "st_ids": [
+      "ST-FR-OPS-015"
+    ],
+    "requirement_acceptance": "月报按原始监控数据复算一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-001",
+    "title": "GitGit仓库权威",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-001"
+    ],
+    "it_ids": [
+      "IT-FR-GG-001"
+    ],
+    "st_ids": [
+      "ST-FR-GG-001",
+      "ST-UC-GG-01"
+    ],
+    "requirement_acceptance": "停用所有外部Git兼容接口，仍能完成创建仓库、提交、分支与历史恢复。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-002",
+    "title": "不可变提交图",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-002"
+    ],
+    "it_ids": [
+      "IT-FR-GG-002"
+    ],
+    "st_ids": [
+      "ST-UC-06",
+      "ST-FR-GG-002"
+    ],
+    "requirement_acceptance": "同输入稳定得到同Commit ID；不能通过正常API改写历史对象。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-003",
+    "title": "原子Ref CAS",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-003"
+    ],
+    "it_ids": [
+      "IT-FR-GG-003"
+    ],
+    "st_ids": [
+      "ST-FR-GG-003",
+      "ST-UC-GG-05"
+    ],
+    "requirement_acceptance": "两名并发写者仅一个成功；失败者看见明确冲突且不产生部分Ref。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-004",
+    "title": "仓库快照",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-004"
+    ],
+    "it_ids": [
+      "IT-FR-GG-004"
+    ],
+    "st_ids": [
+      "ST-FR-GG-004"
+    ],
+    "requirement_acceptance": "重命名/删除之后checkout旧Commit按字节还原全部文件。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-005",
+    "title": "两阶段提交门禁",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-ADV-GIT-OID",
+      "UT-ADV-GIT-EVENT",
+      "UT-ADV-GC-RACE",
+      "UT-FR-GG-005"
+    ],
+    "it_ids": [
+      "IT-ADV-GIT-SKIPHOOK",
+      "IT-ADV-GIT-SIGNED",
+      "IT-ADV-GIT-LOCK",
+      "IT-ADV-GIT-REFGC",
+      "IT-FR-GG-005"
+    ],
+    "st_ids": [
+      "ST-UC-01",
+      "ST-ADV-GIT-REAL",
+      "ST-ADV-GIT-COMMITS",
+      "ST-FR-GG-005"
+    ],
+    "requirement_acceptance": "缺片或Receipt过期时拒绝Ref发布，且保留可补偿事务。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-006",
+    "title": "幂等确认与Outbox",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-006"
+    ],
+    "it_ids": [
+      "IT-FR-GG-006"
+    ],
+    "st_ids": [
+      "ST-FR-GG-006"
+    ],
+    "requirement_acceptance": "断网+重放+乱序事件后两侧谱系最终对账一致，不产生重复版本。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-007",
+    "title": "树级变更与重命名",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-007"
+    ],
+    "it_ids": [
+      "IT-FR-GG-007"
+    ],
+    "st_ids": [
+      "ST-FR-GG-007"
+    ],
+    "requirement_acceptance": "重命名保留AssetId及全部历史；路径冲突不得静默覆盖。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-008",
+    "title": "分支差异查询",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-008"
+    ],
+    "it_ids": [
+      "IT-FR-GG-008"
+    ],
+    "st_ids": [
+      "ST-UC-02",
+      "ST-FR-GG-008"
+    ],
+    "requirement_acceptance": "带1000个资产的样本差异结果可按AssetId/RevisionId复算。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-009",
+    "title": "原生资产锁",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-009"
+    ],
+    "it_ids": [
+      "IT-FR-GG-009"
+    ],
+    "st_ids": [
+      "ST-UC-10",
+      "ST-FR-GG-009"
+    ],
+    "requirement_acceptance": "并发锁冲突拒绝覆盖，强制解锁有审计并更新fencing token。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-010",
+    "title": "离线工作区日志",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-010"
+    ],
+    "it_ids": [
+      "IT-FR-GG-010"
+    ],
+    "st_ids": [
+      "ST-FR-GG-010",
+      "ST-UC-GG-06"
+    ],
+    "requirement_acceptance": "断网修改恢复后不误覆盖远端并提示冲突。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-011",
+    "title": "稀疏工作区与懒加载",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-011"
+    ],
+    "it_ids": [
+      "IT-FR-GG-011"
+    ],
+    "st_ids": [
+      "ST-FR-GG-011",
+      "ST-UC-GG-06"
+    ],
+    "requirement_acceptance": "未选中的20GiB媒体不下载，选中内容下载SHA与Manifest一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-012",
+    "title": "三方合并引擎",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-012"
+    ],
+    "it_ids": [
+      "IT-FR-GG-012"
+    ],
+    "st_ids": [
+      "ST-FR-GG-012",
+      "ST-UC-GG-05"
+    ],
+    "requirement_acceptance": "不可安全合并时返回显式冲突，绝不自动选取后写者。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-013",
+    "title": "冲突决议审计",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-013"
+    ],
+    "it_ids": [
+      "IT-FR-GG-013"
+    ],
+    "st_ids": [
+      "ST-FR-GG-013",
+      "ST-UC-GG-05"
+    ],
+    "requirement_acceptance": "合并结果可复查全部parent和resolve原因。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-014",
+    "title": "媒体评审流",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-014"
+    ],
+    "it_ids": [
+      "IT-FR-GG-014"
+    ],
+    "st_ids": [
+      "ST-FR-GG-014",
+      "ST-UC-GG-09"
+    ],
+    "requirement_acceptance": "未获必需审批无法发布指定受保护分支。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-015",
+    "title": "依赖变更影响",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-015"
+    ],
+    "it_ids": [
+      "IT-FR-GG-015"
+    ],
+    "st_ids": [
+      "ST-FR-GG-015",
+      "ST-UC-GG-04"
+    ],
+    "requirement_acceptance": "修改纹理后定位全部引用该纹理的模型且不跨分支误报。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-016",
+    "title": "历史可达性水位",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-016"
+    ],
+    "it_ids": [
+      "IT-FR-GG-016"
+    ],
+    "st_ids": [
+      "ST-UC-09",
+      "ST-FR-GG-016",
+      "ST-UC-GG-10"
+    ],
+    "requirement_acceptance": "丢事件或正在并发恢复时GC fail-closed且不得误删仍可达块。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-017",
+    "title": "组织级授权",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-017"
+    ],
+    "it_ids": [
+      "IT-FR-GG-017"
+    ],
+    "st_ids": [
+      "ST-FR-GG-017"
+    ],
+    "requirement_acceptance": "撤权与过期读票据不会绕开资源级ACL。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-018",
+    "title": "受保护提交策略",
+    "category": "GG",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-018"
+    ],
+    "it_ids": [
+      "IT-FR-GG-018"
+    ],
+    "st_ids": [
+      "ST-FR-GG-018"
+    ],
+    "requirement_acceptance": "无权force-update拒绝且所有策略决策留痕。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-019",
+    "title": "标准Git迁入隔离",
+    "category": "GG",
+    "release": "E2",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-019"
+    ],
+    "it_ids": [
+      "IT-FR-GG-019"
+    ],
+    "st_ids": [
+      "ST-FR-GG-019"
+    ],
+    "requirement_acceptance": "禁用互操作插件后原生核心可运行；迁移映射差异清晰可查。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-GG-020",
+    "title": "提交与资产恢复",
+    "category": "GG",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-014",
+    "ut_ids": [
+      "UT-FR-GG-020"
+    ],
+    "it_ids": [
+      "IT-FR-GG-020"
+    ],
+    "st_ids": [
+      "ST-FR-GG-020",
+      "ST-UC-GG-07"
+    ],
+    "requirement_acceptance": "模拟跨存储迁移后历史恢复字节正确。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-001",
+    "title": "稳定资产标识",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-001"
+    ],
+    "it_ids": [
+      "IT-FR-MV-001"
+    ],
+    "st_ids": [
+      "ST-FR-MV-001"
+    ],
+    "requirement_acceptance": "移动/改名不改变AssetId，更新内容必生成新Revision。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-002",
+    "title": "媒体版本记录",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-002"
+    ],
+    "it_ids": [
+      "IT-FR-MV-002"
+    ],
+    "st_ids": [
+      "ST-FR-MV-002"
+    ],
+    "requirement_acceptance": "同一Asset存在分叉与合并时可画出完整版本DAG。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-003",
+    "title": "内容清单",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-017",
+    "ut_ids": [
+      "UT-FR-MV-003"
+    ],
+    "it_ids": [
+      "IT-FR-MV-003"
+    ],
+    "st_ids": [
+      "ST-FR-MV-003"
+    ],
+    "requirement_acceptance": "任意读取块可按清单重组并与原始SHA-256完全一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-004",
+    "title": "内容定义分块",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-018",
+    "ut_ids": [
+      "UT-FR-MV-004"
+    ],
+    "it_ids": [
+      "IT-FR-MV-004"
+    ],
+    "st_ids": [
+      "ST-FR-MV-004",
+      "ST-UC-GG-01"
+    ],
+    "requirement_acceptance": "前部插入小内容后后续大部分相同Chunk能够复用，参数与分块版本固定。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-005",
+    "title": "强摘要验证",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-005"
+    ],
+    "it_ids": [
+      "IT-FR-MV-005"
+    ],
+    "st_ids": [
+      "ST-FR-MV-005"
+    ],
+    "requirement_acceptance": "随机篡改任意Chunk或Manifest必被拒绝/隔离，不能返回成功ACK。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-006",
+    "title": "安全租户去重",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-006"
+    ],
+    "it_ids": [
+      "IT-FR-MV-006"
+    ],
+    "st_ids": [
+      "ST-FR-MV-006"
+    ],
+    "requirement_acceptance": "Tenant B测时/响应无法判定Tenant A内容是否存在，B无权取A的Chunk。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-007",
+    "title": "断点续传",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-017",
+    "ut_ids": [
+      "UT-FR-MV-007"
+    ],
+    "it_ids": [
+      "IT-FR-MV-007"
+    ],
+    "st_ids": [
+      "ST-UC-01",
+      "ST-FR-MV-007",
+      "ST-UC-GG-01",
+      "ST-UC-GG-06"
+    ],
+    "requirement_acceptance": "20GiB模拟流断线后仅补传缺块，不重复生成同一可见Revision。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-008",
+    "title": "增量下载",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-018",
+    "ut_ids": [
+      "UT-FR-MV-008"
+    ],
+    "it_ids": [
+      "IT-FR-MV-008"
+    ],
+    "st_ids": [
+      "ST-FR-MV-008"
+    ],
+    "requirement_acceptance": "部分请求字节/offset正确，内存占用不随文件总大小线性增长。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-009",
+    "title": "原件不可变",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-009"
+    ],
+    "it_ids": [
+      "IT-FR-MV-009"
+    ],
+    "st_ids": [
+      "ST-FR-MV-009"
+    ],
+    "requirement_acceptance": "所有派生对象sha不同空间，重取旧Commit的原件字节完全一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-010",
+    "title": "媒体探测",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-010"
+    ],
+    "it_ids": [
+      "IT-FR-MV-010"
+    ],
+    "st_ids": [
+      "ST-FR-MV-010"
+    ],
+    "requirement_acceptance": "伪造扩展名不能自动触发高风险解析器，未知类型安全保存。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-011",
+    "title": "可扩展元数据",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-017",
+    "ut_ids": [
+      "UT-FR-MV-011"
+    ],
+    "it_ids": [
+      "IT-FR-MV-011"
+    ],
+    "st_ids": [
+      "ST-FR-MV-011"
+    ],
+    "requirement_acceptance": "未知字段可往返且Schema升级不破坏原始数据。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-012",
+    "title": "媒体适配器统一接口",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-018",
+    "ut_ids": [
+      "UT-FR-MV-012"
+    ],
+    "it_ids": [
+      "IT-FR-MV-012"
+    ],
+    "st_ids": [
+      "ST-FR-MV-012"
+    ],
+    "requirement_acceptance": "不支持能力返回Unsupported而非默认成功，Adapter升级不修改旧Revision。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-013",
+    "title": "图像版本差异",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-013"
+    ],
+    "it_ids": [
+      "IT-FR-MV-013"
+    ],
+    "st_ids": [
+      "ST-UC-02",
+      "ST-FR-MV-013"
+    ],
+    "requirement_acceptance": "参考图golden数据可复算热区，PSDs不支持图层时降级为渲染图比较。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-014",
+    "title": "视频时间线差异",
+    "category": "MV",
+    "release": "E2",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-014"
+    ],
+    "it_ids": [
+      "IT-FR-MV-014"
+    ],
+    "st_ids": [
+      "ST-FR-MV-014"
+    ],
+    "requirement_acceptance": "变更片段时间码与样本golden一致，不能把非确定性转码当原内容证据。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-015",
+    "title": "音频版本差异",
+    "category": "MV",
+    "release": "E2",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-017",
+    "ut_ids": [
+      "UT-FR-MV-015"
+    ],
+    "it_ids": [
+      "IT-FR-MV-015"
+    ],
+    "st_ids": [
+      "ST-FR-MV-015",
+      "ST-UC-GG-02"
+    ],
+    "requirement_acceptance": "参考音频能定位差异区间，未标准化采样率须显式提示。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-016",
+    "title": "三维资产差异",
+    "category": "MV",
+    "release": "E2",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-018",
+    "ut_ids": [
+      "UT-FR-MV-016"
+    ],
+    "it_ids": [
+      "IT-FR-MV-016"
+    ],
+    "st_ids": [
+      "ST-UC-10",
+      "ST-FR-MV-016",
+      "ST-UC-GG-03"
+    ],
+    "requirement_acceptance": "相同拓扑不同材质及相同外观不同网格被正确区别。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-017",
+    "title": "安全合并能力声明",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-017"
+    ],
+    "it_ids": [
+      "IT-FR-MV-017"
+    ],
+    "st_ids": [
+      "ST-FR-MV-017"
+    ],
+    "requirement_acceptance": "两个不可合并二进制冲突绝不自动丢失一方修改。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-018",
+    "title": "资源依赖DAG",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-018"
+    ],
+    "it_ids": [
+      "IT-FR-MV-018"
+    ],
+    "st_ids": [
+      "ST-FR-MV-018",
+      "ST-UC-GG-03",
+      "ST-UC-GG-04"
+    ],
+    "requirement_acceptance": "循环引用检测、跨Commit依赖变更反向追踪正确。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-019",
+    "title": "多文件原子资源快照",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-017",
+    "ut_ids": [
+      "UT-FR-MV-019"
+    ],
+    "it_ids": [
+      "IT-FR-MV-019"
+    ],
+    "st_ids": [
+      "ST-UC-01",
+      "ST-FR-MV-019"
+    ],
+    "requirement_acceptance": "断电时不会出现Commit A包含一半新素材一半未确认素材。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-020",
+    "title": "媒体派生缓存隔离",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-018",
+    "ut_ids": [
+      "UT-FR-MV-020"
+    ],
+    "it_ids": [
+      "IT-FR-MV-020"
+    ],
+    "st_ids": [
+      "ST-FR-MV-020"
+    ],
+    "requirement_acceptance": "缓存污染或过期不影响原始数据，可清除并重建。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-021",
+    "title": "隔离媒体解析",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-021"
+    ],
+    "it_ids": [
+      "IT-FR-MV-021"
+    ],
+    "st_ids": [
+      "ST-FR-MV-021",
+      "ST-UC-GG-08"
+    ],
+    "requirement_acceptance": "构造ZIP炸弹/格式畸形样本，Worker触发限额时主服务不崩溃。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-022",
+    "title": "媒体权限和分享",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-022"
+    ],
+    "it_ids": [
+      "IT-FR-MV-022"
+    ],
+    "st_ids": [
+      "ST-FR-MV-022"
+    ],
+    "requirement_acceptance": "撤权后旧预览URL及Range不能继续访问受保护源。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-023",
+    "title": "资产搜索索引",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-017",
+    "ut_ids": [
+      "UT-FR-MV-023"
+    ],
+    "it_ids": [
+      "IT-FR-MV-023"
+    ],
+    "st_ids": [
+      "ST-FR-MV-023"
+    ],
+    "requirement_acceptance": "权限过滤正确且展示index watermark，允许索引延迟但不伪造提交状态。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-024",
+    "title": "冲突可视化",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-018",
+    "ut_ids": [
+      "UT-FR-MV-024"
+    ],
+    "it_ids": [
+      "IT-FR-MV-024"
+    ],
+    "st_ids": [
+      "ST-FR-MV-024",
+      "ST-UC-GG-02"
+    ],
+    "requirement_acceptance": "不支持内容显示元数据差异、哈希和人工冲突入口。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-025",
+    "title": "作品来源与授权",
+    "category": "MV",
+    "release": "E2",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-025"
+    ],
+    "it_ids": [
+      "IT-FR-MV-025"
+    ],
+    "st_ids": [
+      "ST-FR-MV-025",
+      "ST-UC-GG-09"
+    ],
+    "requirement_acceptance": "授权过期的外部媒体阻断发布，下载与审计保留可授权访问。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-026",
+    "title": "可验证媒体导出",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-026"
+    ],
+    "it_ids": [
+      "IT-FR-MV-026"
+    ],
+    "st_ids": [
+      "ST-FR-MV-026"
+    ],
+    "requirement_acceptance": "导出的包在离线验证工具中重建SHA与版本谱系一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-027",
+    "title": "存储逻辑与业务版本隔离",
+    "category": "MV",
+    "release": "E0",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-017",
+    "ut_ids": [
+      "UT-FR-MV-027"
+    ],
+    "it_ids": [
+      "IT-FR-MV-027"
+    ],
+    "st_ids": [
+      "ST-UC-06",
+      "ST-FR-MV-027",
+      "ST-UC-GG-07"
+    ],
+    "requirement_acceptance": "迁移后GitGit revision不改变，即使目标Provider versionId完全不同。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-028",
+    "title": "安全垃圾回收",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-018",
+    "ut_ids": [
+      "UT-FR-MV-028"
+    ],
+    "it_ids": [
+      "IT-FR-MV-028"
+    ],
+    "st_ids": [
+      "ST-UC-09",
+      "ST-FR-MV-028",
+      "ST-UC-GG-10"
+    ],
+    "requirement_acceptance": "在并发checkout/restore与GC竞态中绝不删仍有引用的Chunk。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-029",
+    "title": "块级迁移",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-029"
+    ],
+    "it_ids": [
+      "IT-FR-MV-029"
+    ],
+    "st_ids": [
+      "ST-FR-MV-029",
+      "ST-UC-GG-07"
+    ],
+    "requirement_acceptance": "切换期间所有受保留Commit可恢复，迁移后块SHA不变。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-030",
+    "title": "媒体协作事件",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-030"
+    ],
+    "it_ids": [
+      "IT-FR-MV-030"
+    ],
+    "st_ids": [
+      "ST-FR-MV-030"
+    ],
+    "requirement_acceptance": "单资产事件乱序处理后最终timeline与权威Commit序列一致。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-031",
+    "title": "批量导入与目录映射",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-017",
+    "ut_ids": [
+      "UT-FR-MV-031"
+    ],
+    "it_ids": [
+      "IT-FR-MV-031"
+    ],
+    "st_ids": [
+      "ST-FR-MV-031"
+    ],
+    "requirement_acceptance": "导入重试不会重复资产；目录相对路径和大小写冲突按策略报告。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-032",
+    "title": "面向生产的预览代理",
+    "category": "MV",
+    "release": "E2",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-018",
+    "ut_ids": [
+      "UT-FR-MV-032"
+    ],
+    "it_ids": [
+      "IT-FR-MV-032"
+    ],
+    "st_ids": [
+      "ST-FR-MV-032"
+    ],
+    "requirement_acceptance": "代理生成失败不阻止GitGit Checkout；展示派生版本与处理参数。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-033",
+    "title": "复杂工程资源类型",
+    "category": "MV",
+    "release": "E2",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-015",
+    "ut_ids": [
+      "UT-FR-MV-033"
+    ],
+    "it_ids": [
+      "IT-FR-MV-033"
+    ],
+    "st_ids": [
+      "ST-FR-MV-033"
+    ],
+    "requirement_acceptance": "缺少某Adapter不影响完整二进制保存，依赖分析显式标Unsupported。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "FR-MV-034",
+    "title": "资产语义标签",
+    "category": "MV",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-016",
+    "ut_ids": [
+      "UT-FR-MV-034"
+    ],
+    "it_ids": [
+      "IT-FR-MV-034"
+    ],
+    "st_ids": [
+      "ST-FR-MV-034"
+    ],
+    "requirement_acceptance": "可查询某Commit下标签快照，后改标签不篡改提交历史。",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-AVA-001",
+    "title": "生产可用率",
+    "category": "可用性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-AVA-001"
+    ],
+    "it_ids": [
+      "IT-NFR-AVA-001"
+    ],
+    "st_ids": [
+      "ST-NFR-AVA-001"
+    ],
+    "requirement_acceptance": "月度 S3 API 可用率≥99.95%（草案）",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-AVA-002",
+    "title": "确认写入持久性",
+    "category": "可用性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-AVA-002"
+    ],
+    "it_ids": [
+      "IT-NFR-AVA-002"
+    ],
+    "st_ids": [
+      "ST-NFR-AVA-002"
+    ],
+    "requirement_acceptance": "已返回2xx的对象不得丢失，损坏可自动检出",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-AVA-003",
+    "title": "站点恢复",
+    "category": "可用性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-AVA-003"
+    ],
+    "it_ids": [
+      "IT-NFR-AVA-003"
+    ],
+    "st_ids": [
+      "ST-NFR-AVA-003",
+      "ST-UC-12"
+    ],
+    "requirement_acceptance": "生产RTO≤60分钟；异步跨站RPO≤15分钟（草案）",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-AVA-004",
+    "title": "同站数据一致性",
+    "category": "可用性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-AVA-004"
+    ],
+    "it_ids": [
+      "IT-NFR-AVA-004"
+    ],
+    "st_ids": [
+      "ST-NFR-AVA-004"
+    ],
+    "requirement_acceptance": "ACK后GET/HEAD/LIST强一致；跨站异步复制单独声明",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-AVA-005",
+    "title": "WORM恢复安全",
+    "category": "可用性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-AVA-005"
+    ],
+    "it_ids": [
+      "IT-NFR-AVA-005"
+    ],
+    "st_ids": [
+      "ST-NFR-AVA-005"
+    ],
+    "requirement_acceptance": "保留版本在保留期限内不得通过应用API提前删除",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-AVA-006",
+    "title": "恢复演练周期",
+    "category": "可用性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-AVA-006"
+    ],
+    "it_ids": [
+      "IT-NFR-AVA-006"
+    ],
+    "st_ids": [
+      "ST-NFR-AVA-006"
+    ],
+    "requirement_acceptance": "季度DR演练；每月备份恢复抽样验证",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-PER-001",
+    "title": "S3对象延迟",
+    "category": "性能・拡張性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-PER-001"
+    ],
+    "requirement_acceptance": "GET p95≤150ms；PUT p95≤300ms（不含公网）",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-PER-002",
+    "title": "数据吞吐",
+    "category": "性能・拡張性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-PER-002"
+    ],
+    "requirement_acceptance": "集群聚合读取吞吐≥1GiB/s，具体由硬件验收确认",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-PER-003",
+    "title": "存储规模",
+    "category": "性能・拡張性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-PER-003"
+    ],
+    "requirement_acceptance": "≥1亿对象、≥1PiB逻辑命名空间可寻址（压力验证可分层）",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-PER-004",
+    "title": "弹性扩容",
+    "category": "性能・拡張性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-PER-004"
+    ],
+    "requirement_acceptance": "扩容期间原API保持可用，数据完整，性能下降范围形成报告",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-PER-005",
+    "title": "Git媒体规模",
+    "category": "性能・拡張性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-PER-005"
+    ],
+    "requirement_acceptance": "可上传/下载/恢复/索引且不出现O(size)内存增长",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-PER-006",
+    "title": "并发公平性",
+    "category": "性能・拡張性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-PER-006",
+      "ST-UC-11"
+    ],
+    "requirement_acceptance": "限流生效，任一租户无法持续耗尽全局带宽/IOPS",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-OPS-001",
+    "title": "指标覆盖",
+    "category": "運用・保守性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-OPS-001"
+    ],
+    "requirement_acceptance": "请求、错误、延迟、容量、校验、排队、滞后均有指标",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-OPS-002",
+    "title": "部署和回滚",
+    "category": "運用・保守性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-OPS-002"
+    ],
+    "requirement_acceptance": "声明式安装、滚动升级、版本回退操作步骤经演练通过",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-OPS-003",
+    "title": "数据修复透明",
+    "category": "運用・保守性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-OPS-003"
+    ],
+    "requirement_acceptance": "有操作日志、校验报告、版本证据，不允许静默覆盖",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-OPS-004",
+    "title": "代码质量",
+    "category": "運用・保守性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-OPS-004"
+    ],
+    "requirement_acceptance": "自动化测试覆盖率目标≥90%；关键路径100%分支用例设计",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-OPS-005",
+    "title": "版本升级兼容",
+    "category": "運用・保守性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-OPS-005"
+    ],
+    "requirement_acceptance": "API、数据格式与元数据迁移可回退或前置备份校验",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-OPS-006",
+    "title": "故障响应",
+    "category": "運用・保守性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-OPS-006"
+    ],
+    "requirement_acceptance": "Sev1自动告警≤5min，操作手册有明确责任人和升级路径",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-MIG-001",
+    "title": "迁移数据准确度",
+    "category": "移行性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [
+      "IT-NFR-MIG-001"
+    ],
+    "st_ids": [
+      "ST-NFR-MIG-001"
+    ],
+    "requirement_acceptance": "对象SHA-256及字节长度 100%一致；元数据差异全部列明",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-MIG-002",
+    "title": "迁移中断恢复",
+    "category": "移行性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [
+      "IT-NFR-MIG-002"
+    ],
+    "st_ids": [
+      "ST-NFR-MIG-002"
+    ],
+    "requirement_acceptance": "重启后接续、不出现漏项；无法迁移对象附异常报告",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-MIG-003",
+    "title": "迁移回滚",
+    "category": "移行性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [
+      "IT-NFR-MIG-003"
+    ],
+    "st_ids": [
+      "ST-NFR-MIG-003"
+    ],
+    "requirement_acceptance": "失败切换可逆且不会覆盖源站已确认写入",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-MIG-004",
+    "title": "外部兼容性",
+    "category": "移行性",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [
+      "IT-NFR-MIG-004"
+    ],
+    "st_ids": [
+      "ST-NFR-MIG-004"
+    ],
+    "requirement_acceptance": "宣称兼容功能通过协议回归测试≥99%；0个阻断级差异",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-SEC-001",
+    "title": "权限拒绝",
+    "category": "セキュリティ",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-SEC-001"
+    ],
+    "it_ids": [
+      "IT-NFR-SEC-001"
+    ],
+    "st_ids": [
+      "ST-NFR-SEC-001"
+    ],
+    "requirement_acceptance": "敏感资源默认拒绝；跨租户访问成功数=0",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-SEC-002",
+    "title": "加密",
+    "category": "セキュリティ",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-SEC-002"
+    ],
+    "it_ids": [
+      "IT-NFR-SEC-002"
+    ],
+    "st_ids": [
+      "ST-NFR-SEC-002"
+    ],
+    "requirement_acceptance": "TLS1.2+；静态强加密并依赖受控KMS；禁用明文后退",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-SEC-003",
+    "title": "凭据处理",
+    "category": "セキュリティ",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-SEC-003"
+    ],
+    "it_ids": [
+      "IT-NFR-SEC-003"
+    ],
+    "st_ids": [
+      "ST-NFR-SEC-003"
+    ],
+    "requirement_acceptance": "不能输出密钥明文；密钥轮换和吊销符合审计要求",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-SEC-004",
+    "title": "漏洞要求",
+    "category": "セキュリティ",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-SEC-004"
+    ],
+    "it_ids": [
+      "IT-NFR-SEC-004"
+    ],
+    "st_ids": [
+      "ST-NFR-SEC-004"
+    ],
+    "requirement_acceptance": "0个已知未接受的Critical漏洞；高危经审批例外",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-SEC-005",
+    "title": "审计保留",
+    "category": "セキュリティ",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-SEC-005"
+    ],
+    "it_ids": [
+      "IT-NFR-SEC-005"
+    ],
+    "st_ids": [
+      "ST-NFR-SEC-005"
+    ],
+    "requirement_acceptance": "审计事件可关联且在外部不可变存储受控保留≥365天（草案）",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-SEC-006",
+    "title": "供应链验证",
+    "category": "セキュリティ",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [
+      "UT-NFR-SEC-006"
+    ],
+    "it_ids": [
+      "IT-NFR-SEC-006"
+    ],
+    "st_ids": [
+      "ST-NFR-SEC-006"
+    ],
+    "requirement_acceptance": "SBOM齐全、构建物签名、授权许可证扫描完成",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-ENV-001",
+    "title": "支持环境",
+    "category": "システム環境・エコロジー",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [
+      "IT-NFR-ENV-001"
+    ],
+    "st_ids": [
+      "ST-NFR-ENV-001"
+    ],
+    "requirement_acceptance": "支持矩阵中的环境可重复部署且升级回滚通过",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-ENV-002",
+    "title": "资源效率",
+    "category": "システム環境・エコロジー",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [
+      "IT-NFR-ENV-002"
+    ],
+    "st_ids": [
+      "ST-NFR-ENV-002"
+    ],
+    "requirement_acceptance": "资源预算以性能基线测试建立，不以未验证的绝对值承诺",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-ENV-003",
+    "title": "离线可维护性",
+    "category": "システム環境・エコロジー",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [
+      "IT-NFR-ENV-003"
+    ],
+    "st_ids": [
+      "ST-NFR-ENV-003"
+    ],
+    "requirement_acceptance": "无公网时安装镜像、文档、许可证/密钥方案可正常运作",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-ENV-004",
+    "title": "地域节能策略",
+    "category": "システム環境・エコロジー",
+    "release": "E1",
+    "status": "拟定",
+    "basic_design": "BD-MINIOS3-001",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [
+      "IT-NFR-ENV-004"
+    ],
+    "st_ids": [
+      "ST-NFR-ENV-004"
+    ],
+    "requirement_acceptance": "可呈现资源耗用及预估迁移成本，不因优化误删受保护版本",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-001",
+    "title": "100TB规模恢复一致性",
+    "category": "VER",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-001"
+    ],
+    "requirement_acceptance": "0块SHA不一致；不丢已ACK提交",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-002",
+    "title": "版本图可追溯",
+    "category": "VER",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-002"
+    ],
+    "requirement_acceptance": "全历史可恢复；无悬空边和循环",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-003",
+    "title": "块级增量传输收益",
+    "category": "PER",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-003"
+    ],
+    "requirement_acceptance": "传输实际缺失Chunk；实验报告字节比及固定分块对照，不固定跨格式承诺",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-004",
+    "title": "大媒体常数级内存",
+    "category": "PER",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-004"
+    ],
+    "requirement_acceptance": "网关单请求峰值堆内存≤约定阈值且不随文件大小线性增长",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-005",
+    "title": "资产历史查询",
+    "category": "PER",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-005"
+    ],
+    "requirement_acceptance": "基线下p95阈值待SLO合意、提供原始分布",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-006",
+    "title": "提交与内容强一致",
+    "category": "REL",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-006"
+    ],
+    "requirement_acceptance": "ACK后内容可还原；缺块不发布新Ref",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-007",
+    "title": "离线冲突零静默丢失",
+    "category": "REL",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-007"
+    ],
+    "requirement_acceptance": "无未提示自动覆盖，存在可审计决议",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-008",
+    "title": "媒体插件沙盒边界",
+    "category": "SEC",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-008",
+      "ST-UC-GG-08"
+    ],
+    "requirement_acceptance": "核心存储无密钥泄露和代码执行；资源耗尽受限",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-009",
+    "title": "细粒度撤权",
+    "category": "SEC",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-009"
+    ],
+    "requirement_acceptance": "撤权传播边界经约定；强制访问点不能绕过授权",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-010",
+    "title": "格式适配器能力清单",
+    "category": "MAI",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-010"
+    ],
+    "requirement_acceptance": "未支持能力明确降级；不破坏既存Manifest/Revision",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-011",
+    "title": "供应链许可证合规",
+    "category": "MAI",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-011"
+    ],
+    "requirement_acceptance": "SBOM覆盖全部发布产物；引入强Copyleft/非自由组件需阻断或批准隔离",
+    "runtime_status": "Not Run"
+  },
+  {
+    "id": "NFR-GG-012",
+    "title": "数据格式可移植",
+    "category": "POR",
+    "release": "E1",
+    "status": "v2新增-待评审",
+    "basic_design": "BD-MINIOS3-012",
+    "detailed_design": "DD-MINIOS3-019",
+    "ut_ids": [],
+    "it_ids": [],
+    "st_ids": [
+      "ST-NFR-GG-012"
+    ],
+    "requirement_acceptance": "不同存储后端/系统版本离线校验可恢复完整媒体",
+    "runtime_status": "Not Run"
+  }
+]

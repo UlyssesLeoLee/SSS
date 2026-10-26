@@ -1,0 +1,25 @@
+erDiagram
+  REPOSITORY ||--o{ COMMIT : owns
+  REPOSITORY ||--o{ REF : tracks
+  REF }o--|| COMMIT : resolves
+  COMMIT ||--|| TREE : contains
+  TREE ||--o{ TREE_ENTRY : has
+  TREE_ENTRY }o--|| MEDIA_ASSET : identifies
+  TREE_ENTRY }o--|| ASSET_REVISION : selects
+  MEDIA_ASSET ||--o{ ASSET_REVISION : evolves
+  ASSET_REVISION }o--|| CONTENT_MANIFEST : references
+  CONTENT_MANIFEST ||--o{ CHUNK_REF : lists
+  CHUNK_REF }o--|| CONTENT_CHUNK : locates
+  ASSET_REVISION ||--o{ ASSET_DEPENDENCY : points
+  ASSET_DEPENDENCY }o--|| ASSET_REVISION : target
+  REPOSITORY { string repo_id PK }
+  COMMIT { string commit_id PK string root_tree_id string parents_digest }
+  REF { string ref_name PK string head_commit_id int revision }
+  TREE { string tree_id PK }
+  TREE_ENTRY { string path PK string asset_id string asset_revision_id }
+  MEDIA_ASSET { string asset_id PK string tenant_id }
+  ASSET_REVISION { string revision_id PK string asset_id string manifest_id }
+  CONTENT_MANIFEST { string manifest_id PK string whole_sha256 int schema_version }
+  CHUNK_REF { int ordinal PK int offset int byte_length string hash }
+  CONTENT_CHUNK { string chunk_key PK string encryption_domain }
+  ASSET_DEPENDENCY { string from_revision string to_revision string kind }

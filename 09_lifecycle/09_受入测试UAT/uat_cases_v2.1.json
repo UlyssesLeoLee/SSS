@@ -1,0 +1,178 @@
+[
+  {
+    "case_id": "UAT-001",
+    "phase": "UAT",
+    "role": "视频制作人",
+    "scenario": "导入10GiB视频，切换两次Commit并取回原件",
+    "uc": "UC-GG-01",
+    "expected": "下载SHA256与两个历史原件各自完全一致",
+    "release": "E0",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-002",
+    "phase": "UAT",
+    "role": "图片设计师",
+    "scenario": "导入PSD/PNG，查询变更，叠加对比",
+    "uc": "UC-02",
+    "expected": "原件hash不变，插件失效时退化为hash/size对比",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-003",
+    "phase": "UAT",
+    "role": "声音制作人",
+    "scenario": "两版WAV切换试听并比较时段差异",
+    "uc": "UC-GG-02",
+    "expected": "声道/时间码正确，未支持格式明确降级",
+    "release": "E2",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-004",
+    "phase": "UAT",
+    "role": "3D美术",
+    "scenario": "提交GLB并查看材质、网格差异",
+    "uc": "UC-GG-03",
+    "expected": "对比来源明确，不能安全合并时不会覆盖",
+    "release": "E2",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-005",
+    "phase": "UAT",
+    "role": "游戏资产主管",
+    "scenario": "修改贴图并查询受影响模型",
+    "uc": "UC-GG-04",
+    "expected": "依赖图能定位受影响AssetRevision",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-006",
+    "phase": "UAT",
+    "role": "双人协作",
+    "scenario": "相同资产在两个分支并行修改后合并",
+    "uc": "UC-GG-05",
+    "expected": "冲突显式可裁决，RefCAS无静默覆盖",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-007",
+    "phase": "UAT",
+    "role": "远程制作人",
+    "scenario": "离线部分克隆后修改、回连并同步",
+    "uc": "UC-GG-06",
+    "expected": "增量上传仅传缺块，冲突有可复现提示",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-008",
+    "phase": "UAT",
+    "role": "主美审批",
+    "scenario": "提交资源并经Review后发布标签",
+    "uc": "UC-GG-09",
+    "expected": "未批准分支无法发布，审批与Commit绑定",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-009",
+    "phase": "UAT",
+    "role": "运维管理员",
+    "scenario": "进行S3双后端迁移与回滚演练",
+    "uc": "UC-03",
+    "expected": "旧endpoint不变、历史hash一致，未追平禁止切换",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-010",
+    "phase": "UAT",
+    "role": "合规负责人",
+    "scenario": "为版本设Legal Hold后尝试删除",
+    "uc": "UC-05",
+    "expected": "所有受保护版本拒绝删除且审计可查",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-011",
+    "phase": "UAT",
+    "role": "GitGit管理员",
+    "scenario": "禁用Git LFS适配，完成完整提交流程",
+    "uc": "UC-01",
+    "expected": "原生Commit、Checkout、增量上传完全可用",
+    "release": "E0",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-012",
+    "phase": "UAT",
+    "role": "安全审计员",
+    "scenario": "撤销用户权限后复用旧token/URL",
+    "uc": "UC-GG-08",
+    "expected": "超权限读取失败且审计含request-id",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-013",
+    "phase": "UAT",
+    "role": "存储运维",
+    "scenario": "误删Branch并发GC及恢复历史",
+    "uc": "UC-GG-10",
+    "expected": "仍受保护内容均可重新检出",
+    "release": "E1",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-014",
+    "phase": "UAT",
+    "role": "S3客户端用户",
+    "scenario": "通过AWS SDK对统一端点PUT/GET/Range",
+    "uc": "UC-07",
+    "expected": "支持声明的S3能力，Hash和Range响应正确",
+    "release": "E0",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-015",
+    "phase": "UAT",
+    "role": "制作管理员",
+    "scenario": "生成代理视频并回溯原件和工具版本",
+    "uc": "UC-GG-01",
+    "expected": "每个派生资产指向稳定源OID、版本、参数",
+    "release": "E2",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  },
+  {
+    "case_id": "UAT-016",
+    "phase": "UAT",
+    "role": "DevOps",
+    "scenario": "断外网，单机GitGit+MinIOS3完整业务闭环",
+    "uc": "UC-GG-01",
+    "expected": "不依赖第三方在线MinIO/AWS/外部Git组件",
+    "release": "E0",
+    "result": "Not Run",
+    "evidence": "BuildSHA+Operator+TraceID+SHA256+Screenshot+Signoff"
+  }
+]

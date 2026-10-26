@@ -1,0 +1,153 @@
+{
+  "schema_version": "2.0-draft",
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED",
+  "authority": "GitGit Rust Core",
+  "transport": "HTTPS JSON; optional Tonic gRPC",
+  "security": "mTLS between services; asset scoped bearer token for clients; durable receipt signed and audience scoped",
+  "operations": [
+    {
+      "name": "begin_upload",
+      "method": "POST",
+      "path": "/v1/assets/uploads",
+      "request": [
+        "repo_id",
+        "path",
+        "asset_id?",
+        "base_revision?",
+        "size",
+        "whole_sha256",
+        "chunker_version",
+        "idempotency_key"
+      ],
+      "response": [
+        "upload_id",
+        "chunker_policy",
+        "expiry"
+      ]
+    },
+    {
+      "name": "query_chunks",
+      "method": "POST",
+      "path": "/v1/assets/uploads/{upload_id}/missing",
+      "request": [
+        "ordered_chunk_hashes"
+      ],
+      "response": [
+        "missing_ordinals",
+        "next_cursor"
+      ],
+      "note": "results restricted to tenant encryption domain"
+    },
+    {
+      "name": "put_chunk",
+      "method": "PUT",
+      "path": "/v1/assets/uploads/{upload_id}/chunks/{ordinal}",
+      "request": [
+        "chunk_sha256",
+        "length",
+        "chunk_bytes"
+      ],
+      "response": [
+        "receipt_id",
+        "durable_at"
+      ]
+    },
+    {
+      "name": "seal_manifest",
+      "method": "POST",
+      "path": "/v1/assets/uploads/{upload_id}/seal",
+      "request": [
+        "canonical_manifest",
+        "file_sha256"
+      ],
+      "response": [
+        "manifest_id",
+        "signed_durable_receipt",
+        "policy_epoch",
+        "placement_epoch"
+      ]
+    },
+    {
+      "name": "commit_prepare",
+      "method": "POST",
+      "path": "/v1/gitgit/repos/{repo_id}/commits/prepare",
+      "request": [
+        "expected_ref_revision",
+        "ref_name",
+        "parents",
+        "tree_digest",
+        "manifest_receipts",
+        "actor",
+        "idempotency_key"
+      ],
+      "response": [
+        "ticket_id",
+        "ttl",
+        "prepared_commit_id"
+      ]
+    },
+    {
+      "name": "commit_publish",
+      "method": "POST",
+      "path": "/v1/gitgit/repos/{repo_id}/commits/publish",
+      "request": [
+        "ticket_id",
+        "idempotency_key"
+      ],
+      "response": [
+        "commit_id",
+        "new_ref_revision",
+        "outbox_seq"
+      ]
+    },
+    {
+      "name": "get_asset",
+      "method": "GET",
+      "path": "/v1/gitgit/repos/{repo_id}/assets/{asset_id}/revisions/{revision_id}",
+      "response": [
+        "manifest_id",
+        "parents",
+        "media_profile",
+        "access_policy"
+      ]
+    },
+    {
+      "name": "checkout",
+      "method": "POST",
+      "path": "/v1/gitgit/repos/{repo_id}/checkout",
+      "request": [
+        "commit_id",
+        "paths?",
+        "sparse_filter?"
+      ],
+      "response": [
+        "tree_manifest",
+        "download_capabilities"
+      ]
+    },
+    {
+      "name": "diff",
+      "method": "POST",
+      "path": "/v1/gitgit/repos/{repo_id}/assets/diff",
+      "request": [
+        "left_revision",
+        "right_revision",
+        "adapter_options"
+      ],
+      "response": [
+        "diff_kind",
+        "adapter_version",
+        "data",
+        "provenance",
+        "fallback"
+      ]
+    }
+  ],
+  "invariants": [
+    "Ref CAS is authoritative and atomic within GitGit metadata",
+    "Signed MinIOS3 durable receipts precede GitGit Ref publication",
+    "GitGit outbox emitted transactionally",
+    "LFS/S3 version identity separate from GitGit commit/asset identity",
+    "Content chunks immutable and cross-tenant existence not disclosed"
+  ]
+}

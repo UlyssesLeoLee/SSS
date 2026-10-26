@@ -1,0 +1,37 @@
+# MinIOS3 E1 DESIGN CONFIG EXAMPLE — NON-PRODUCTION, do not treat as deployable as-is.
+schemaVersion: design.minios3.io/v1
+releaseStage: E1
+cluster:
+  metadata:
+    voters: 3
+    requireReadIndex: true
+    bucketSingleRaftGroup: true # fail-closed pending multi-range proof
+  s3Endpoint:
+    listen: "0.0.0.0:9000"
+    tlsSecretRef: "secret://minios3/s3-tls"
+    preserveOriginalRequestTarget: true
+  adminEndpoint:
+    listen: "127.0.0.1:9443"
+    tlsSecretRef: "secret://minios3/admin-tls"
+security:
+  kmsSecretRef: "secret://minios3/kms"
+  requireTls: true
+  failClosedOnUnknownCapabilities: true
+  auditSinkRef: "secret://minios3/audit-sink"
+storage:
+  mode: Mixed
+  native:
+    ec: {k: 4, m: 2, chunkMiB: 64}
+    requireAllShardDurableReceipts: true
+    minimumIndependentFaultDomains: 3
+    zoneLossWrites: deny # 6 nodes B1 cannot claim continuous zone-loss writes
+  upstream:
+    providerCredentialRef: "secret://minios3/provider-credentials"
+    allowBypassWriters: false
+workers:
+  enableGCWithoutSignedGitSnapshot: false
+  maxInflightBytesPerTenantMiB: 256 # draft; calibrate by benchmark
+  defaultJobLeaseSeconds: 60
+migration:
+  cutoverRequiresDualApproval: true
+  rollbackAfterCutoverRequiresReverseCatchup: true

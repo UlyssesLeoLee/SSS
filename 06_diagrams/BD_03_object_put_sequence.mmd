@@ -1,0 +1,21 @@
+sequenceDiagram
+  autonumber
+  participant SDK as S3 SDK
+  participant GW as Rust S3 Gateway
+  participant AUTH as IAM/KMS/Quota
+  participant META as Raft Object Catalog
+  participant EC as EC Encode/Storage Nodes
+  SDK->>GW: PUT Bucket/Key SigV4 Stream
+  GW->>AUTH: verify SigV4, policy, retention, quota
+  AUTH-->>GW: permission+policy_epoch
+  GW->>META: prepare_put(key,routeEpoch,OperationId)
+  META-->>GW: signed ticket & placement
+  GW->>GW: stream SHA-256 / checksum
+  GW->>EC: stripe data + parity writes
+  EC->>EC: fsync fragments / validate integrity
+  EC-->>GW: all required durability receipts
+  GW->>META: commit_put(manifest,receipts,OperationId)
+  META->>META: raft quorum commit ObjectVersion+Head+AuditOutbox
+  META-->>GW: committed LogicalVersionId
+  GW-->>SDK: 200 + ETag + version header
+  Note over SDK,META: If timeout before HTTP ACK, retry must lookup OperationId

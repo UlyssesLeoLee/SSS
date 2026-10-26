@@ -1,0 +1,152 @@
+{
+  "version": "v2.1",
+  "date": "2026-10-26",
+  "base": "v2.0",
+  "stages": [
+    {
+      "stage": "P00",
+      "name": "企画・构想/立项",
+      "folder": "09_lifecycle/00_企画与立项",
+      "files": [
+        "09_lifecycle/00_企画与立项/PL-MINIOS3-001_项目构想与可行性.md",
+        "09_lifecycle/00_企画与立项/PM-MINIOS3-001_项目计划WBS与阶段门禁.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P01",
+      "name": "业务分析/要求分析",
+      "folder": "09_lifecycle/01_业务需求分析",
+      "files": [
+        "09_lifecycle/01_业务需求分析/BR-MINIOS3-001_业务流程与角色需求.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P02",
+      "name": "要件定义/需求规格",
+      "folder": "09_lifecycle/02_要件定义",
+      "files": [
+        "01_requirements/SRS-MINIOS3-GG-001_要件定义书_v2.0.md",
+        "01_requirements/requirements_v2.0.json",
+        "09_lifecycle/02_要件定义/REQ-MINIOS3-002_要求分析与验收约束.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P03",
+      "name": "方式设计/外部设计",
+      "folder": "09_lifecycle/03_方式与外部设计",
+      "files": [
+        "02_basic_design/BD-MINIOS3-001_系统基本设计书_v2.0.md",
+        "02_basic_design/BD-MINIOS3-012_GitGit原生多媒体版本体系.md",
+        "09_lifecycle/03_方式与外部设计/ED-MINIOS3-001_外部设计与画面遷移.md",
+        "09_lifecycle/03_方式与外部设计/IF-MINIOS3-001_外部接口与协议兼容矩阵.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P04",
+      "name": "内部设计/详细设计",
+      "folder": "09_lifecycle/04_内部与详细设计",
+      "files": [
+        "03_detailed_design/DD-MINIOS3-014_GitGit原生版本图与仓库事务.md",
+        "03_detailed_design/DD-MINIOS3-015_媒体分块CAS与可靠上传下载.md",
+        "03_detailed_design/DD-MINIOS3-019_非功能指标追踪许可证与质量门禁.md",
+        "09_lifecycle/04_内部与详细设计/ID-MINIOS3-001_内部设计数据表与状态不变量.md",
+        "09_lifecycle/04_内部与详细设计/ID-MINIOS3-002_异常处理与恢复判定表.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P05",
+      "name": "制造/实施准备",
+      "folder": "09_lifecycle/05_制造与实施规范",
+      "files": [
+        "09_lifecycle/05_制造与实施规范/IMPL-MINIOS3-001_Rust制造工程规范.md",
+        "09_lifecycle/05_制造与实施规范/IMPL-MINIOS3-002_CI流水线及制品发布规范.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P06",
+      "name": "单元测试UT",
+      "folder": "09_lifecycle/06_单元测试UT",
+      "files": [
+        "05_test_design/TD-MINIOS3-UT-001_单元测试设计书_v2.0.md",
+        "05_test_design/UT_完整案例明细_v2.0.md",
+        "09_lifecycle/06_单元测试UT/UT-MINIOS3-002_单元测试判定和Fixture.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P07",
+      "name": "结合测试IT",
+      "folder": "09_lifecycle/07_结合测试IT",
+      "files": [
+        "05_test_design/TD-MINIOS3-IT-001_结合测试设计书_v2.0.md",
+        "05_test_design/IT_完整案例明细_v2.0.md",
+        "09_lifecycle/07_结合测试IT/IT-MINIOS3-002_结合测试合同与故障注入.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P08",
+      "name": "系统测试ST",
+      "folder": "09_lifecycle/08_系统测试ST",
+      "files": [
+        "05_test_design/TD-MINIOS3-ST-001_系统测试设计书_v2.0.md",
+        "05_test_design/ST_完整案例明细_v2.0.md",
+        "09_lifecycle/08_系统测试ST/ST-MINIOS3-002_系统非功能与企业级可靠性判定.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P09",
+      "name": "受入测试UAT",
+      "folder": "09_lifecycle/09_受入测试UAT",
+      "files": [
+        "09_lifecycle/09_受入测试UAT/UAT-MINIOS3-001_用户受入测试计划与判定.md",
+        "09_lifecycle/09_受入测试UAT/UAT_详细案例清单.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P10",
+      "name": "移行/发布",
+      "folder": "09_lifecycle/10_移行与发布",
+      "files": [
+        "09_lifecycle/10_移行与发布/MIG-MINIOS3-001_数据移行与回滚计划.md",
+        "09_lifecycle/10_移行与发布/REL-MINIOS3-001_上线验证与切换手顺.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P11",
+      "name": "运用/保守",
+      "folder": "09_lifecycle/11_运用与保守",
+      "files": [
+        "09_lifecycle/11_运用与保守/OPS-MINIOS3-001_运用设计与作业手顺.md",
+        "09_lifecycle/11_运用与保守/MAINT-MINIOS3-001_保守维护与升级兼容.md",
+        "09_lifecycle/11_运用与保守/BCP-MINIOS3-001_备份灾备与业务连续性.md"
+      ],
+      "status": "Draft, Not Executed"
+    },
+    {
+      "stage": "P12",
+      "name": "共通安全/质量/配置管理",
+      "folder": "09_lifecycle/12_共通质量与管理",
+      "files": [
+        "09_lifecycle/12_共通质量与管理/SEC-MINIOS3-001_威胁建模与安全测试设计.md",
+        "09_lifecycle/12_共通质量与管理/QA-MINIOS3-002_阶段审查清单与关闭标准.md",
+        "09_lifecycle/12_共通质量与管理/OSS-MINIOS3-001_全开源可商用技术选型与许可证审查.md",
+        "00_governance/change_control_v2.0.json",
+        "08_quality/QA-MINIOS3-GG-001_对抗式自审.md"
+      ],
+      "status": "Draft, Not Executed"
+    }
+  ],
+  "uat_count": 16,
+  "ut_it_st_count": 629,
+  "execution_status": "Not Run"
+}

@@ -1,0 +1,30 @@
+erDiagram
+  TENANT ||--o{ PROJECT : owns
+  TENANT ||--o{ BUCKET : owns
+  TENANT ||--o{ PRINCIPAL : defines
+  PRINCIPAL ||--o{ POLICY : has
+  PROJECT ||--o{ GIT_REPO_GRANT : associates
+  BUCKET ||--o{ OBJECT_HEAD : contains
+  OBJECT_HEAD ||--o{ OBJECT_VERSION : has
+  OBJECT_VERSION ||--o{ PHYSICAL_PLACEMENT : stored_as
+  BACKEND ||--o{ PHYSICAL_PLACEMENT : hosts
+  CONTENT_CAS ||--o{ REPO_OID_GRANT : authorized_by
+  GIT_REPO_GRANT ||--o{ REPO_OID_GRANT : grants
+  REPO_OID_GRANT ||--o{ GIT_COMMIT_INDEX : found_in
+  OBJECT_VERSION ||--o{ AUDIT_EVENT : traced_by
+  MIGRATION_JOB ||--o{ PHYSICAL_PLACEMENT : copies
+  TENANT { string tenant_id PK }
+  PROJECT { string project_id PK string tenant_id FK }
+  PRINCIPAL { string principal_id PK string tenant_id FK }
+  POLICY { string policy_id PK string principal_id FK }
+  BUCKET { string bucket_id PK string tenant_id FK string route_epoch }
+  OBJECT_HEAD { string bucket_key PK string current_version_id }
+  OBJECT_VERSION { string version_id PK string bucket_key FK string sha256 string retention }
+  PHYSICAL_PLACEMENT { string placement_id PK string version_id FK string physical_version_id string backend_id FK }
+  BACKEND { string backend_id PK string capabilities_hash }
+  CONTENT_CAS { string oid PK string sha256 string size }
+  GIT_REPO_GRANT { string repo_id PK string project_id FK }
+  REPO_OID_GRANT { string repo_oid_pk PK string repo_id FK string oid FK }
+  GIT_COMMIT_INDEX { string commit_path_pk PK string repo_id FK string oid FK }
+  AUDIT_EVENT { string event_id PK string version_id FK }
+  MIGRATION_JOB { string job_id PK string source_backend string target_backend }
